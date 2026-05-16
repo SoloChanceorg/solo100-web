@@ -1,0 +1,1734 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>solo100.org — Bitcoin Solo Mining Pool · Best 100 Shares · SoloChance.org</title>
+  <meta name="description" content="Bitcoin mining pool where Best 100 quality shares split 88% of the block reward equally. 10% finder bonus. 2% fee. SHA-256. By SoloChance.org." />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://solo100.org/" />
+
+  <!-- Open Graph -->
+  <meta property="og:type"        content="website" />
+  <meta property="og:url"         content="https://solo100.org/" />
+  <meta property="og:title"       content="solo100.org — Best 100 BTC Mining Pool" />
+  <meta property="og:description" content="Top 100 quality shares split 88% of the block reward equally. 10% finder bonus. 2% fee. SHA-256 Bitcoin solo mining pool." />
+  <meta property="og:image"       content="https://solo100.org/images/og-image.png" />
+  <meta property="og:image:width"  content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt"    content="solo100.org — Top 100 quality shares. Equal Bitcoin payout." />
+  <meta property="og:site_name"   content="solo100.org" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card"        content="summary_large_image" />
+  <meta name="twitter:title"       content="solo100.org — Best 100 BTC Mining Pool" />
+  <meta name="twitter:description" content="Top 100 quality shares split 88% of the block reward equally. 10% finder bonus. 2% fee. SHA-256 Bitcoin solo mining pool." />
+  <meta name="twitter:image"       content="https://solo100.org/images/og-image.png" />
+
+  <!-- Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "name": "solo100.org",
+    "url": "https://solo100.org/",
+    "description": "Bitcoin solo mining pool where the top 100 quality shares split 88% of the block reward equally.",
+    "publisher": {
+      "@type": "Organization",
+      "name": "SoloChance.org",
+      "url": "https://solochance.org/"
+    }
+  }
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "What is solo100.org?",
+        "acceptedAnswer": { "@type": "Answer", "text": "solo100.org is a Bitcoin mining pool with a unique reward model, a SoloChance.org project. Instead of splitting the reward across all miners by total work, solo100.org rewards only the 100 miners who submitted the highest-quality shares in the current round — each earning an equal 0.0275 BTC (0.88% of the block reward). The block finder also earns a 10% bonus on top." }
+      },
+      {
+        "@type": "Question",
+        "name": "How is share quality measured?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Share quality is measured by difficulty — how close the share's hash is to satisfying the full Bitcoin network difficulty. Each miner is ranked by their single best share this round. Higher hashrate gives a statistically better chance of producing a high-quality share." }
+      },
+      {
+        "@type": "Question",
+        "name": "What if I'm not in Best 100?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Miners ranked #101 and below receive no payout for that round. The leaderboard resets every block, so every round is a fresh opportunity. Think of it like solo mining — but 100 people share the win instead of one." }
+      },
+      {
+        "@type": "Question",
+        "name": "Can one miner hold multiple slots?",
+        "acceptedAnswer": { "@type": "Answer", "text": "No. Each Bitcoin address holds at most one leaderboard position, determined by its single best share. Running multiple distinct Bitcoin addresses gives each its own independent position — which is a valid strategy for maximising your expected payout." }
+      },
+      {
+        "@type": "Question",
+        "name": "When and how do I get paid?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Payouts are coinbase outputs — paid directly in the block your pool finds, to the Bitcoin address you mined with. No account or registration required. However, coinbase outputs are locked by the Bitcoin protocol for 100 block confirmations (roughly 16–17 hours) before they become spendable." }
+      },
+      {
+        "@type": "Question",
+        "name": "What hardware do I need?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Any SHA-256 ASIC works — Antminer S-series, Whatsminer M-series, AvalonMiner, Bitaxe, etc. The pool uses standard Stratum v1, compatible with virtually all modern Bitcoin mining hardware and software." }
+      },
+      {
+        "@type": "Question",
+        "name": "What is the pool fee?",
+        "acceptedAnswer": { "@type": "Answer", "text": "2% of each block reward — exactly 0.0625 BTC per block. This covers server infrastructure, development, and maintenance. No hidden fees or withdrawal charges." }
+      },
+      {
+        "@type": "Question",
+        "name": "Is this safe? Do I need to trust the pool?",
+        "acceptedAnswer": { "@type": "Answer", "text": "You never deposit funds. You point your miner at the stratum server; if a block is found, payouts go to your Bitcoin address automatically. The only risk is opportunity cost — if no block is found this round, those shares yield nothing. You can stop at any time." }
+      },
+      {
+        "@type": "Question",
+        "name": "I can see my payout in my wallet but can't spend it — why?",
+        "acceptedAnswer": { "@type": "Answer", "text": "This is completely normal. Coinbase outputs are locked by the Bitcoin protocol for 100 block confirmations before they become spendable. At roughly 10 minutes per block, that's about 16–17 hours after the block is found. Your coins are safe; they just need to mature." }
+      },
+      {
+        "@type": "Question",
+        "name": "Where is solo100.org located?",
+        "acceptedAnswer": { "@type": "Answer", "text": "The pool server runs in Frankfurt, Germany. Invoicing and domain purchases are handled through Estonia, thanks to the Estonian e-Residency programme." }
+      },
+      {
+        "@type": "Question",
+        "name": "Why are all Bitcoin addresses public? Why not mask them until a valid share is found?",
+        "acceptedAnswer": { "@type": "Answer", "text": "To be fully trustless, all payouts must be coinbase outputs — written directly into the block by the miner who finds it, with no pool operator touching the coins at any point. By the nature of that design, Bitcoin addresses must be declared upfront and are therefore public, just as they would be in any coinbase transaction on the Bitcoin blockchain." }
+      }
+    ]
+  }
+  </script>
+
+  <!-- Favicons -->
+  <link rel="icon" type="image/png" href="images/logo-no-text-transparent.png" />
+  <link rel="apple-touch-icon"     href="images/logo-no-text-transparent.png" />
+  <meta name="theme-color" content="#F7931A" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@300;400;500;700&family=Ubuntu+Mono&display=swap" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@300;400;500;700&family=Ubuntu+Mono&display=swap" rel="stylesheet" />
+
+  <style>
+    :root {
+      --bg:           #0d1117;
+      --bg-card:      rgba(255,255,255,.04);
+      --bg-card-hover:rgba(255,255,255,.07);
+      --border:       rgba(255,255,255,.08);
+      --accent:       #F7931A;
+      --accent-dim:   rgba(247,147,26,.15);
+      --accent-glow:  rgba(247,147,26,.25);
+      --text:         #e6edf3;
+      --muted:        #7d8590;
+      --yellow:       #f0b429;
+      --yellow-bg:    rgba(240,180,41,.07);
+      --yellow-bd:    rgba(240,180,41,.3);
+      --green:        #3fb950;
+      --green-dim:    rgba(63,185,80,.15);
+      --red:          #f85149;
+      --red-dim:      rgba(248,81,73,.15);
+      --radius:       12px;
+      --radius-sm:    8px;
+      --blur:         blur(12px);
+      --font:         'Ubuntu', sans-serif;
+      --mono:         'Ubuntu Mono', 'Fira Mono', 'Courier New', monospace;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--font);
+      font-weight: 300;
+      font-size: 16px;
+      line-height: 1.6;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+    a { color: var(--accent); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    strong { font-weight: 500; }
+
+    /* ── HEADER ── */
+    .header {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(13,17,23,.85);
+      backdrop-filter: var(--blur); -webkit-backdrop-filter: var(--blur);
+      border-bottom: 1px solid var(--border);
+    }
+    .header-inner {
+      max-width: 960px; margin: 0 auto; padding: 0 1.25rem;
+      display: flex; align-items: center; justify-content: space-between;
+      height: 60px; gap: 1rem;
+    }
+    .logo {
+      display: flex; align-items: center; gap: .5rem;
+      font-size: 1.1rem; font-weight: 500;
+      white-space: nowrap; user-select: none;
+      text-decoration: none; color: var(--text);
+    }
+    .logo:hover { text-decoration: none; }
+    .logo-icon { height: 32px; width: 32px; object-fit: contain; }
+    .logo .accent { color: var(--accent); }
+    .nav { display: flex; gap: .25rem; flex-wrap: wrap; }
+    .nav-btn {
+      background: transparent; border: none;
+      color: var(--muted); font-family: var(--font);
+      font-size: .9rem; font-weight: 400;
+      padding: .4rem .85rem; border-radius: var(--radius-sm);
+      cursor: pointer; transition: color .2s, background .2s;
+    }
+    .nav-btn:hover { color: var(--text); background: var(--bg-card); }
+    .nav-btn.active { color: var(--accent); background: var(--accent-dim); }
+
+    /* ── CONTAINER ── */
+    .container { max-width: 960px; margin: 0 auto; padding: 0 1.25rem; width: 100%; }
+    main.container { flex: 1; padding-top: 2rem; padding-bottom: 4rem; }
+
+    /* ── SECTIONS ── */
+    .section { display: none; }
+    .section.active { display: block; }
+
+    /* ── SECTION TITLE ── */
+    .section-title {
+      font-size: .8rem; font-weight: 500;
+      text-transform: uppercase; letter-spacing: .08em;
+      color: var(--muted); margin-bottom: 1rem; margin-top: 0;
+    }
+
+    /* ── GOOGLE TRANSLATE ── */
+    .goog-te-menu-frame { overflow-x: auto !important; }
+    .goog-te-gadget { color: var(--muted) !important; }
+    .goog-te-gadget a { color: var(--muted) !important; }
+    .goog-te-banner-frame { display: none !important; }
+    body { top: 0 !important; }
+
+    /* ── DISCLAIMER NESTED CARDS ── */
+    #disclaimer .card .card {
+      background: rgba(13,17,23,.7);
+      border-color: rgba(255,255,255,.12);
+      transition: none;
+    }
+    #disclaimer .card .card:hover {
+      transform: none;
+      box-shadow: none;
+      background: rgba(13,17,23,.7);
+    }
+    #disclaimer .card .card .info-desc { color: var(--text); font-size: .88rem; }
+    #disclaimer .card .card .info-title { color: var(--text); }
+
+    /* ── MAINTENANCE BANNER ── */
+    .maintenance-banner {
+      background: #7c2d12;
+      border-bottom: 2px solid #ea580c;
+      color: #fed7aa;
+      font-size: .92rem;
+      line-height: 1.55;
+      padding: .85rem 1.25rem;
+      text-align: center;
+    }
+    .maintenance-banner strong { color: #ffedd5; font-weight: 600; }
+
+    /* ── DISCLAIMER ── */
+    .disclaimer {
+      display: flex; align-items: flex-start; gap: 1rem;
+      background: rgba(220,38,38,.06);
+      border: 1px solid rgba(220,38,38,.25);
+      border-radius: var(--radius);
+      padding: 1.1rem 1.4rem;
+      margin-top: 2rem; margin-bottom: 2rem;
+    }
+    .disclaimer-icon { font-size: 1.3rem; line-height: 1; flex-shrink: 0; }
+    .disclaimer strong { font-weight: 500; color: #f87171; display: block; margin-bottom: .35rem; }
+    .disclaimer p { color: var(--muted); font-size: .85rem; line-height: 1.6; margin: 0; }
+
+    /* ── HERO ── */
+    .hero { margin-bottom: 2.25rem; padding-top: .5rem; }
+    .hero-inner { display: flex; align-items: center; gap: 1.75rem; }
+    .hero-logo {
+      width: 130px; height: 130px; flex-shrink: 0;
+      border-radius: 50%;
+      box-shadow: 0 0 32px var(--accent-glow);
+      object-fit: contain;
+      background: rgba(247,147,26,.07);
+      padding: 5px;
+    }
+    .byline {
+      display: inline-flex; flex-direction: column; align-items: flex-start;
+      gap: .2rem; font-size: .8rem; font-weight: 500;
+      text-transform: uppercase; letter-spacing: .08em;
+      color: #7c74f0;
+      background: rgba(79,70,229,.12); border: 1px solid rgba(79,70,229,.25);
+      border-radius: 12px; padding: .5rem .85rem; margin-bottom: .9rem;
+    }
+    .byline a { color: #a5a0f5; font-weight: 600; }
+    .byline a:hover { color: #fff; text-decoration: none; }
+    .hero h1 {
+      font-size: clamp(1.6rem, 4vw, 2.4rem);
+      font-weight: 700; line-height: 1.2; margin-bottom: .65rem;
+    }
+    .hero h1 .accent { color: var(--accent); }
+    .hero-sub { color: var(--muted); font-size: 1.05rem; max-width: 580px; }
+    .hero-badges {
+      display: flex; gap: .5rem; flex-wrap: wrap; margin-top: 1.5rem; margin-bottom: 1.5rem;
+    }
+    .badge {
+      display: inline-flex; align-items: center; gap: 4px;
+      padding: .25rem .75rem; border-radius: 999px;
+      font-size: .78rem; font-weight: 500;
+      border: 1px solid var(--border); background: var(--bg-card); color: var(--muted);
+    }
+    .badge.o { border-color: rgba(247,147,26,.4); background: var(--accent-dim); color: var(--accent); }
+    .badge.g { border-color: rgba(63,185,80,.4); background: var(--green-dim); color: var(--green); }
+    .accent { color: var(--accent); }
+
+    /* ── CARDS ── */
+    .card {
+      background: var(--bg-card); border: 1px solid var(--border);
+      border-radius: var(--radius); padding: 1.25rem 1.5rem;
+      backdrop-filter: var(--blur); -webkit-backdrop-filter: var(--blur);
+      transition: transform .2s ease, box-shadow .2s ease, background .2s ease;
+    }
+    .card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 32px var(--accent-glow);
+      background: var(--bg-card-hover);
+    }
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+      gap: 1rem;
+    }
+    .card-grid.two   { grid-template-columns: repeat(2, minmax(0,1fr)); }
+    .card-grid.three { grid-template-columns: repeat(3, minmax(0,1fr)); }
+
+    .card-grid.three-col { grid-template-columns: repeat(auto-fill, minmax(240px,1fr)); }
+
+    /* ── STAT CARDS ── */
+    .stat-card { text-align: center; padding: 1.5rem 1rem; }
+    .stat-label {
+      font-size: .8rem; color: var(--muted);
+      text-transform: uppercase; letter-spacing: .06em; margin-bottom: .4rem;
+    }
+    .stat-value { font-size: 1.8rem; font-weight: 700; color: var(--accent); line-height: 1.1; }
+
+    .stat-value.skeleton { color: var(--border); }
+
+    /* ── INFO CARDS ── */
+    .info-card { padding: 1.5rem; }
+    .info-icon { font-size: 1.8rem; margin-bottom: .75rem; }
+    .info-title { font-size: 1rem; font-weight: 500; margin-bottom: .4rem; }
+    .info-desc { color: var(--muted); font-size: .9rem; }
+    .payout-order {
+      margin-top: .65rem; padding-left: 1.1rem;
+      display: flex; flex-direction: column; gap: .45rem; font-size: .85rem;
+    }
+    .payout-order li { line-height: 1.4; }
+    .payout-amount { color: var(--accent); font-weight: 500; }
+    .usd-val { font-size: .82em; color: var(--muted); font-family: var(--mono); }
+
+    /* ── LIVE DOT ── */
+    .live {
+      display: inline-flex; align-items: center; gap: 5px;
+      font-size: .8rem; color: var(--green); font-weight: 500;
+    }
+    .live::before {
+      content: ''; width: 6px; height: 6px; border-radius: 50%;
+      background: var(--green); animation: pulse 1.6s ease-in-out infinite;
+    }
+    .live.down { color: var(--red); }
+    .live.down::before { background: var(--red); animation: none; }
+    @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:.2} }
+
+    /* ── CONNECT CARD ── */
+    .connect-card { display: flex; flex-direction: column; gap: .75rem; }
+    .connect-row { display: flex; align-items: center; gap: 1rem; flex-wrap: wrap; }
+    .connect-label {
+      min-width: 90px; font-size: .85rem; color: var(--muted);
+      text-transform: uppercase; letter-spacing: .05em;
+    }
+    code.connect-value {
+      font-family: var(--mono); font-size: .95rem;
+      color: var(--accent); background: var(--accent-dim);
+      padding: .2rem .6rem; border-radius: var(--radius-sm); word-break: break-all;
+    }
+    .input-hint { margin-top: .6rem; font-size: .82rem; color: var(--muted); word-break: break-all; }
+    .input-hint code { font-family: var(--mono); font-size: .8rem; color: var(--accent); background: var(--accent-dim); padding: .1rem .3rem; border-radius: 4px; }
+    .tip-note {
+      font-size: .85rem; color: var(--muted); line-height: 1.65;
+      border-left: 3px solid var(--accent); background: rgba(247,147,26,.07);
+      padding: .65rem 1rem; border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+      margin-top: .75rem;
+    }
+    .tip-note strong { color: var(--text); font-weight: 500; }
+    .tip-note a { color: var(--accent); }
+
+    /* ── CONFIG TABS ── */
+    .config-tabs { display: flex; gap: .375rem; margin-bottom: 1rem; flex-wrap: wrap; }
+    .tab-btn {
+      background: transparent; border: 1px solid var(--border);
+      color: var(--muted); font-family: var(--font);
+      font-size: .8rem; padding: .3rem .8rem; border-radius: var(--radius-sm);
+      cursor: pointer; transition: color .2s, background .2s, border-color .2s;
+    }
+    .tab-btn:hover { color: var(--text); border-color: var(--accent); }
+    .tab-btn.active { color: var(--accent); background: var(--accent-dim); border-color: var(--accent); }
+    .config-block {
+      display: none;
+      background: rgba(0,0,0,.35); border: 1px solid var(--border);
+      border-radius: var(--radius-sm); padding: 1rem 1.25rem;
+      overflow-x: auto; font-family: var(--mono); font-size: .875rem;
+      color: var(--text); line-height: 1.7; white-space: pre;
+    }
+    .config-block.active { display: block; }
+
+    /* ── MOCKUP UIs (shared structure) ── */
+    .bitaxe-ui, .avalon-ui, .braiins-ui, .nicehash-ui {
+      display: none; border-radius: 10px; padding: 0 !important;
+      overflow: hidden; font-family: var(--font); width: 100%; white-space: normal;
+    }
+    .bitaxe-ui.active, .avalon-ui.active, .braiins-ui.active, .nicehash-ui.active { display: block; }
+    .bitaxe-header, .avalon-header, .braiins-header, .nicehash-header {
+      display: flex; align-items: center; gap: .6rem; padding: .75rem 1.1rem;
+      font-size: .95rem; font-weight: 500;
+    }
+    .bitaxe-logo, .avalon-logo, .braiins-logo, .nicehash-logo { font-size: 1.1rem; }
+    .bitaxe-form, .avalon-form, .braiins-form, .nicehash-form { padding: 1rem 1.1rem; display: flex; flex-direction: column; gap: .75rem; }
+    .bitaxe-field, .avalon-field, .braiins-field, .nicehash-field { display: flex; flex-direction: column; gap: .3rem; }
+    .bitaxe-field label, .avalon-field label, .braiins-field label, .nicehash-field label { font-size: .78rem; font-weight: 500; }
+    .bitaxe-field input, .avalon-field input, .braiins-field input,
+    .nicehash-field input, .nicehash-field select {
+      border-radius: 6px; font-family: var(--mono); font-size: .88rem;
+      padding: .55rem .8rem; outline: none; width: 100%;
+    }
+
+    /* Bitaxe */
+    .bitaxe-ui { background: #1e1e2e; border: 1px solid #2d2d44; }
+    .bitaxe-header { background: #16162a; color: #e2e2f0; border-bottom: 1px solid #2d2d44; }
+    .bitaxe-logo { color: var(--accent); }
+    .bitaxe-field label { color: #9090b0; text-transform: uppercase; letter-spacing: .05em; }
+    .bitaxe-field input { background: #13131f; border: 1px solid #2d2d44; color: #e2e2f0; }
+    .bitaxe-field input:focus { border-color: var(--accent); }
+
+    /* Avalon */
+    .avalon-ui { background: #1a1a1a; border: 1px solid #333; }
+    .avalon-header { background: #111; color: #e0e0e0; border-bottom: 1px solid #333; }
+    .avalon-logo { color: var(--accent); }
+    .avalon-field label { color: #888; text-transform: uppercase; letter-spacing: .05em; }
+    .avalon-field input { background: #0d0d0d; border: 1px solid #333; color: #e0e0e0; }
+    .avalon-field input:focus { border-color: var(--accent); }
+
+    /* Braiins */
+    .braiins-ui { background: #1a1a1e; border: 1px solid #333; }
+    .braiins-header { background: #111114; color: #e0e0e0; border-bottom: 1px solid #333; }
+    .braiins-logo { color: #8a6bf0; }
+    .braiins-field label { color: #888; font-style: italic; }
+    .braiins-field input { background: #0d0d0f; border: 1px solid #333; color: #e0e0e0; }
+    .braiins-field input:focus { border-color: #8a6bf0; }
+
+    /* NiceHash */
+    .nicehash-ui { background: #1a1a1e; border: 1px solid #333; }
+    .nicehash-header { background: #111114; color: #e0e0e0; border-bottom: 1px solid #333; }
+    .nicehash-logo { color: #f5a623; }
+    .nicehash-field label { color: #888; font-style: italic; }
+    .nicehash-field input, .nicehash-field select { background: #0d0d0f; border: 1px solid #333; color: #e0e0e0; -webkit-appearance: none; }
+    .nicehash-field input:focus, .nicehash-field select:focus { border-color: #f5a623; }
+    .nicehash-row { display: flex; gap: .75rem; }
+    .nicehash-row .nicehash-field:first-child { flex: 2; }
+    .nicehash-row .nicehash-field:last-child { flex: 1; }
+    .nicehash-note { font-size: .72rem; color: #666; margin-top: -.2rem; }
+
+    /* ── LOOKUP ── */
+    .lookup-card { margin-bottom: 1.5rem; }
+    .lookup-row { display: flex; gap: .75rem; flex-wrap: wrap; }
+    .address-input {
+      flex: 1; min-width: 0;
+      background: rgba(0,0,0,.35); border: 1px solid var(--border);
+      border-radius: var(--radius-sm); color: var(--text);
+      font-family: var(--mono); font-size: .9rem;
+      padding: .65rem 1rem; outline: none;
+      transition: border-color .2s, box-shadow .2s;
+    }
+    .address-input::placeholder { color: var(--muted); opacity: .6; }
+    .address-input:focus { border-color: var(--accent); box-shadow: 0 0 0 3px var(--accent-glow); }
+    .btn-primary {
+      background: var(--accent); color: #000;
+      border: none; font-family: var(--font); font-size: .9rem; font-weight: 500;
+      padding: .65rem 1.4rem; border-radius: var(--radius-sm);
+      cursor: pointer; white-space: nowrap;
+      transition: opacity .2s, transform .15s;
+    }
+    .btn-primary:hover { opacity: .88; transform: translateY(-1px); }
+    .btn-primary:active { transform: translateY(0); }
+
+    /* ── LINK BTN ── */
+    .link-btn {
+      background: none; border: none; color: var(--accent);
+      font-family: var(--font); font-size: .8rem;
+      cursor: pointer; padding: 0; text-decoration: underline;
+    }
+
+    /* ── COPY BTN ── */
+    .copy-btn {
+      background: transparent; border: 1px solid var(--border);
+      color: var(--muted); font-family: var(--font);
+      font-size: .8rem; padding: .3rem .9rem; border-radius: var(--radius-sm);
+      cursor: pointer; transition: border-color .15s, color .15s; white-space: nowrap;
+    }
+    .copy-btn:hover { border-color: var(--accent); color: var(--accent); }
+    .copy-btn.copied { border-color: var(--green); color: var(--green); }
+
+    /* ── LEADERBOARD TABLE ── */
+    .table-card { padding: 0 !important; overflow: hidden; }
+    .table-card:hover { transform: none; box-shadow: none; background: var(--bg-card); }
+    .lb-table-wrap { overflow-x: auto; width: 100%; -webkit-overflow-scrolling: touch; }
+    .lb-table { width: 100%; min-width: 620px; table-layout: fixed; border-collapse: collapse; font-size: .85rem; }
+    .lb-table .col-bs  { width: 110px; }
+    .lb-table .col-pay { width: 170px; }
+    .lb-table th:last-child, .lb-table td:last-child { width: 140px; }
+    .lb-table th {
+      text-align: left; color: var(--muted); font-weight: 500;
+      text-transform: uppercase; letter-spacing: .05em; font-size: .82rem;
+      padding: .7rem 1rem; border-bottom: 1px solid var(--border); white-space: nowrap;
+    }
+    .lb-table th:not(:first-child):not(:nth-child(2)):not(:last-child) { text-align: right; }
+    .lb-table th:last-child { text-align: center; }
+    .lb-table td {
+      padding: .7rem 1rem; border-bottom: 1px solid var(--border);
+      color: var(--text); white-space: nowrap;
+      transition: background .15s; font-size: .95rem;
+    }
+    .lb-table tr:last-child td { border-bottom: none; }
+    .lb-table tbody tr:hover td { background: rgba(255,255,255,.04); }
+    .lb-table td:not(:first-child):not(:nth-child(2)):not(:last-child) { text-align: right; }
+    .lb-table td:last-child { text-align: center; }
+
+    .rnk { font-family: var(--mono); color: var(--muted); font-size: .85rem; }
+    .rnk.pod { font-size: 1.1rem; }
+    .addr-cell { font-family: var(--mono); font-size: .78rem; color: var(--muted); }
+    .lb-table td.addr-cell { white-space: normal; word-break: break-all; }
+    .share-cell { font-family: var(--mono); font-weight: 500; color: var(--accent); }
+    .pay-cell { font-family: var(--mono); }
+    .pay-cell.in { color: var(--accent); font-weight: 500; }
+    .pay-cell.out { color: var(--muted); }
+
+    .pill {
+      display: inline-flex; align-items: center; justify-content: center;
+      width: 88px; margin: 0 8px; padding: .15rem 0; border-radius: 999px;
+      font-size: .72rem; font-weight: 500;
+    }
+    .pill-in   { background: var(--green-dim); color: var(--green); border: 1px solid rgba(63,185,80,.3); }
+    .pill-out  { background: var(--red-dim);   color: var(--red);   border: 1px solid rgba(248,81,73,.3); }
+    .pill-hero { background: rgba(247,147,26,.18); color: var(--accent); border: 1px solid rgba(247,147,26,.5); }
+
+    .lb-table tr.out-row td.addr-cell,
+    .lb-table tr.out-row td.share-cell { opacity: .5; }
+
+    .cutoff-row td {
+      padding: .55rem 1rem;
+      background: linear-gradient(to bottom, rgba(247,147,26,.1), rgba(220,38,38,.07));
+      border-top: 2px solid #F7931A;
+      border-bottom: 2px solid rgba(220,38,38,.55);
+      box-shadow: inset 0 2px 12px rgba(247,147,26,.2);
+    }
+    .cutoff-inner {
+      display: flex; align-items: center; gap: 10px;
+      font-size: .72rem; font-weight: 600; letter-spacing: .07em;
+      text-transform: uppercase; color: var(--accent);
+    }
+    .cutoff-line-top  { flex: 1; height: 1px; background: rgba(247,147,26,.5); box-shadow: 0 0 4px rgba(247,147,26,.6); }
+    .cutoff-line-bot  { flex: 1; height: 1px; background: rgba(220,38,38,.4); }
+
+
+    /* ── FAQ ── */
+    .faq-list { display: flex; flex-direction: column; gap: .6rem; }
+    .faq-item {
+      background: var(--bg-card); border: 1px solid var(--border);
+      border-radius: var(--radius); overflow: hidden;
+      transition: border-color .2s, box-shadow .2s;
+    }
+    .faq-item[open] { border-color: rgba(247,147,26,.3); box-shadow: 0 4px 20px var(--accent-glow); }
+    .faq-item summary {
+      font-size: .95rem; font-weight: 500; color: var(--text);
+      padding: 1rem 3rem 1rem 1.25rem; cursor: pointer; list-style: none;
+      position: relative; user-select: none;
+    }
+    .faq-item summary::-webkit-details-marker { display: none; }
+    .faq-item summary::after { content: '+'; color: var(--accent); font-size: 1.2rem; font-weight: 300; transition: transform .2s; position: absolute; right: 1.25rem; top: 50%; transform: translateY(-50%); }
+    .faq-item[open] summary::after { transform: translateY(-50%) rotate(45deg); }
+    .faq-item p, .faq-item ol, .faq-item ul { padding: 0 1.25rem 1rem; color: var(--muted); font-size: .9rem; line-height: 1.7; }
+    .faq-item code { font-family: var(--mono); font-size: .85rem; color: var(--accent); background: var(--accent-dim); padding: .1rem .4rem; border-radius: 4px; }
+
+    /* ── WARMING BANNER ── */
+    .warming-banner {
+      display: flex; align-items: flex-start; gap: 1rem;
+      background: var(--accent-dim); border: 1px solid rgba(247,147,26,.2);
+      border-radius: var(--radius); padding: 1.1rem 1.4rem; margin-bottom: 1.5rem;
+    }
+    .warming-banner.hidden { display: none; }
+    .warming-icon { font-size: 1.4rem; line-height: 1; }
+    .warming-banner strong { font-weight: 500; color: var(--accent); }
+    .warming-banner p { color: var(--muted); font-size: .9rem; margin-top: .2rem; }
+
+    /* ── MY STATS RESULT ── */
+    .workers-table { width: 100%; border-collapse: collapse; font-size: .85rem; }
+    .workers-table th { text-align: left; padding: .5rem .75rem; color: var(--muted); font-weight: 500; font-size: .75rem; text-transform: uppercase; letter-spacing: .06em; border-bottom: 1px solid var(--border); }
+    .workers-table td { padding: .6rem .75rem; border-bottom: 1px solid var(--border); color: var(--text); font-family: var(--mono); font-size: .82rem; }
+    .workers-table tr:last-child td { border-bottom: none; }
+    .workers-table td.worker-name { color: var(--accent); max-width: 220px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+
+    /* ── FOOTER ── */
+    .footer { border-top: 1px solid var(--border); padding: 1.1rem 0; font-size: .85rem; color: var(--muted); }
+    .footer-inner { display: flex; align-items: center; justify-content: center; gap: 2rem; flex-wrap: wrap; }
+    .footer a { color: var(--muted); }
+    .footer a:hover { color: var(--accent); text-decoration: none; }
+
+    /* ── TELEGRAM BUTTON ── */
+    .tg-btn {
+      display: inline-flex; align-items: center; gap: .5rem;
+      background: #229ED9; color: #fff;
+      border: none; text-decoration: none;
+      font-family: var(--font); font-size: 1rem; font-weight: 700;
+      padding: .75rem 1.75rem; border-radius: var(--radius-sm);
+      cursor: pointer; transition: opacity .2s, transform .15s;
+    }
+    .tg-btn:hover { opacity: .88; transform: translateY(-2px); text-decoration: none; }
+    .tg-btn:active { transform: translateY(0); }
+    .x-btn {
+      display: inline-flex; align-items: center; gap: .5rem;
+      background: #000; color: #fff;
+      border: 1px solid rgba(255,255,255,.2); text-decoration: none;
+      font-family: var(--font); font-size: 1rem; font-weight: 700;
+      padding: .75rem 1.75rem; border-radius: var(--radius-sm);
+      cursor: pointer; transition: border-color .2s, box-shadow .2s, transform .15s;
+    }
+    .x-btn:hover { border-color: rgba(255,255,255,.55); box-shadow: 0 0 14px rgba(255,255,255,.1); transform: translateY(-2px); text-decoration: none; }
+    .x-btn:active { transform: translateY(0); }
+
+    /* ── HERO BUTTONS ── */
+    .btn-strategy {
+      display: inline-flex; align-items: center; gap: .5rem;
+      background: transparent; color: var(--accent);
+      border: 1px solid rgba(247,147,26,.4); font-family: var(--font);
+      font-size: 1rem; font-weight: 700;
+      padding: .75rem 1.75rem; border-radius: var(--radius-sm);
+      cursor: pointer; letter-spacing: .01em;
+      transition: background .2s, border-color .2s, transform .15s;
+    }
+    .btn-strategy:hover {
+      background: var(--accent-dim); border-color: var(--accent);
+      transform: translateY(-2px);
+    }
+    .btn-strategy:active { transform: translateY(0); }
+
+    /* ── LEADERBOARD BUTTON ── */
+    .btn-leaderboard {
+      display: inline-flex; align-items: center; gap: .5rem;
+      margin-top: 1.25rem;
+      background: var(--accent); color: #000;
+      border: none; font-family: var(--font);
+      font-size: 1rem; font-weight: 700;
+      padding: .75rem 1.75rem; border-radius: var(--radius-sm);
+      cursor: pointer; letter-spacing: .01em;
+      box-shadow: 0 0 18px var(--accent-glow);
+      transition: opacity .2s, transform .15s, box-shadow .2s;
+    }
+    .btn-leaderboard:hover {
+      opacity: .9; transform: translateY(-2px);
+      box-shadow: 0 0 28px rgba(247,147,26,.45);
+    }
+    .btn-leaderboard:active { transform: translateY(0); }
+
+    /* ── BRAND NAME ── */
+    .s100       { color: var(--text) !important; font-style: normal; }
+    .s100 .accent { color: var(--accent); }
+
+    /* ── UTILS ── */
+    .hidden { display: none !important; }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 600px) {
+      .card-grid, .card-grid.two, .card-grid.three, .card-grid.three-col { grid-template-columns: 1fr; }
+      .header-inner { flex-wrap: wrap; height: auto; padding: .6rem 1.25rem; }
+      .hero-inner { flex-direction: column; align-items: flex-start; gap: 1rem; }
+      .hero-logo { width: 72px; height: 72px; }
+      .hero h1 { font-size: 1.5rem; }
+      .lookup-row { flex-direction: column; }
+      .btn-primary { width: 100%; }
+      .connect-row { flex-direction: column; gap: .25rem; }
+      .connect-label { min-width: unset; }
+
+      .footer-inner { flex-direction: column; align-items: center; }
+    }
+  </style>
+</head>
+<body>
+
+
+<header class="header">
+  <div class="header-inner">
+    <a href="/" class="logo">
+      <img src="images/logo-no-text-transparent.png" alt="solo100.org logo" class="logo-icon" />
+      <span class="s100">solo<span class="accent">100</span>.org</span>
+    </a>
+    <nav class="nav">
+      <button class="nav-btn active" data-section="home">Home</button>
+      <button class="nav-btn" data-section="connect">Connect</button>
+      <button class="nav-btn" data-section="mystats">My Stats</button>
+      <button class="nav-btn" data-section="best100">Best 100</button>
+      <button class="nav-btn" data-section="blocks">Blocks</button>
+      <button class="nav-btn" data-section="strategy">Strategy</button>
+      <button class="nav-btn" data-section="disclaimer">Disclaimer</button>
+      <button class="nav-btn" data-section="faq">FAQ</button>
+    </nav>
+  </div>
+</header>
+
+<main class="container">
+
+  <!-- ══════════════════════════════════════════════════════════
+       HOME
+  ══════════════════════════════════════════════════════════ -->
+  <section id="home" class="section active">
+
+    <!-- Hero -->
+    <div class="hero">
+      <div class="hero-inner">
+        <img src="images/logo-no-text-transparent.png" alt="solo100.org logo" class="hero-logo" />
+        <div>
+          <p style="font-size:1.25rem;font-weight:500;color:var(--text);line-height:1.6;margin-bottom:1.5rem;">⚠️ This is <strong>not</strong> a regular solo or proportional pool. Read <a href="#" onclick="document.querySelector('[data-section=disclaimer]').click();return false;" style="color:inherit;text-decoration:underline;">Disclaimer</a> carefully before you point your miner here — the payout model is fundamentally different and <u>rewards are not guaranteed</u>.</p>
+          <div class="byline">
+            <span>By the developer of <a href="https://solochance.org" target="_blank" rel="noopener">SoloChance.org</a></span>
+          </div>
+          <h1><span class="s100">solo<span class="accent">100</span>.org</span>:<br/><span class="accent">The most exciting Bitcoin pool to join.</span></h1>
+          <p class="hero-sub">Find the best quality share. Claim your spot in Best 100.<br><span style="color:var(--muted);font-size:1.06em;">Split</span> <span style="color:#a07050;font-size:1.12em;">the</span> <span style="color:rgba(247,147,26,.8);font-size:1.3em;text-shadow:0 0 8px rgba(247,147,26,.35),0 0 20px rgba(247,147,26,.15);">reward</span> <em style="font-style:normal;font-weight:700;font-size:1.6em;text-transform:uppercase;color:var(--accent);text-shadow:0 0 6px rgba(247,147,26,.9),0 0 18px rgba(247,147,26,.7),0 0 40px rgba(247,147,26,.4),0 0 70px rgba(247,147,26,.2);">equally</em>.</p>
+          <div style="display:flex;gap:.75rem;flex-wrap:wrap;margin-top:1.25rem;">
+            <button class="btn-leaderboard" style="margin-top:0;" onclick="switchSection('best100')">View Live Leaderboard →</button>
+            <button class="btn-strategy" onclick="switchSection('strategy')">Mining Strategies →</button>
+          </div>
+          <div style="display:flex;gap:.75rem;flex-wrap:wrap;margin-top:.75rem;">
+            <a href="https://t.me/solochanceorg" target="_blank" rel="noopener" class="tg-btn">
+              <svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.562 8.248-1.97 9.289c-.145.658-.537.818-1.084.508l-3-2.21-1.447 1.394c-.16.16-.295.295-.605.295l.213-3.053 5.56-5.023c.242-.213-.054-.333-.373-.12L7.17 14.498l-2.95-.924c-.64-.204-.657-.64.136-.948l11.57-4.461c.537-.194 1.006.131.836.083z"/></svg>
+              Join Telegram
+            </a>
+            <a href="https://x.com/solochanceorg" target="_blank" rel="noopener" class="x-btn">
+              <svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.744l7.737-8.835L1.254 2.25H8.08l4.253 5.622 5.912-5.622zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+              Follow on X
+            </a>
+          </div>
+          <div class="hero-badges">
+            <span class="badge o">10% Finder Bonus</span>
+            <span class="badge g">Best 100 Share Equally</span>
+            <span class="badge">2% Pool Fee</span>
+            <span class="badge">SHA-256 · Stratum v1</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bitcoin Stats -->
+    <h2 class="section-title">Bitcoin</h2>
+    <div class="card-grid two" style="margin-bottom:2rem">
+      <div class="card stat-card">
+        <div class="stat-label">BTC / USD</div>
+        <div class="stat-value" id="s-price">—</div>
+      </div>
+      <div class="card stat-card">
+        <div class="stat-label">Network Hashrate</div>
+        <div class="stat-value" id="s-diff">—</div>
+      </div>
+    </div>
+
+    <!-- Pool Status -->
+    <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:.75rem;margin-bottom:1rem;">
+      <h2 class="section-title" style="margin-bottom:0;">Pool Status</h2>
+      <span class="live">Live</span>
+    </div>
+    <div class="warming-banner" id="pool-warming">
+      <span class="warming-icon">🌱</span>
+      <div>
+        <strong>Pool is warming up</strong>
+        <p>Stats will appear here once the pool is live. Check back soon.</p>
+      </div>
+    </div>
+    <div class="card-grid three hidden" id="pool-stats-grid" style="margin-bottom:2rem">
+      <div class="card stat-card">
+        <div class="stat-label">Pool Hashrate</div>
+        <div class="stat-value skeleton" id="s-hr">—</div>
+      </div>
+      <div class="card stat-card">
+        <div class="stat-label">Active Miners</div>
+        <div class="stat-value skeleton" id="s-miners">—</div>
+      </div>
+      <div class="card stat-card">
+        <div class="stat-label">Blocks Found</div>
+        <div class="stat-value" id="s-blocks">0</div>
+      </div>
+      <div class="card stat-card">
+        <div class="stat-label">Best Share</div>
+        <div class="stat-value skeleton" id="s-best">—</div>
+      </div>
+
+      <div class="card stat-card">
+        <div class="stat-label">Accepted Shares</div>
+        <div class="stat-value skeleton" id="s-shares">—</div>
+      </div>
+      <div class="card stat-card">
+        <div class="stat-label">Uptime</div>
+        <div class="stat-value skeleton" id="s-uptime">—</div>
+      </div>
+    </div>
+
+    <div id="lb-cutoff-card" class="card hidden" style="margin-bottom:2rem;text-align:center;">
+      <div class="stat-label">Minimum Best Share to Enter Best 100</div>
+      <div class="stat-value" id="lb-cutoff-share" style="margin:.4rem 0;">—</div>
+      <div style="font-size:.88rem;color:var(--muted);margin-top:.3rem;">
+        Score at least this share to be eligible — win
+        <strong id="lb-cutoff-btc" style="color:var(--accent)">—</strong> <strong style="color:var(--accent)">BTC</strong>
+        <span id="lb-cutoff-usd" class="usd-val"></span>
+        when/if a block is found
+      </div>
+    </div>
+
+    <!-- Pool Chances -->
+    <div id="pool-chances-section" class="hidden">
+      <h2 class="section-title" style="margin-top:2.5rem">Pool Chances</h2>
+      <div class="card-grid three" style="margin-bottom:2rem">
+        <div class="card stat-card">
+          <div class="stat-label">Chance / Day</div>
+          <div class="stat-value skeleton" id="s-chance-day" style="font-size:1.2rem">—</div>
+        </div>
+        <div class="card stat-card">
+          <div class="stat-label">Chance / Week</div>
+          <div class="stat-value skeleton" id="s-chance-week" style="font-size:1.2rem">—</div>
+        </div>
+        <div class="card stat-card">
+          <div class="stat-label">Chance / Month</div>
+          <div class="stat-value skeleton" id="s-chance-month" style="font-size:1.2rem">—</div>
+        </div>
+      </div>
+    </div>
+
+    <h2 class="section-title" style="margin-top:2.5rem">Why <span class="s100">solo<span class="accent">100</span>.org</span> is awesome</h2>
+    <div class="card-grid three-col">
+      <div class="card info-card">
+        <div class="info-icon">🏆</div>
+        <div class="info-title">How Each Block Pays Out</div>
+        <div class="info-desc">
+          <ol class="payout-order">
+            <li><span class="payout-amount"><span id="po-finder">0.3125</span> <span style="color:var(--accent)">BTC</span> <span class="usd-val" id="po-finder-usd"></span></span> bonus to whoever finds the block</li>
+            <li><span class="payout-amount"><span id="po-each">0.0275</span> <span style="color:var(--accent)">BTC</span> <span class="usd-val" id="po-each-usd"></span></span> each to the <span id="po-count">100</span> qualifying addresses in Best 100 list that sent the top 100 best shares — <span class="payout-amount"><span id="po-total">2.75</span> <span style="color:var(--accent)">BTC</span> <span class="usd-val" id="po-total-usd"></span></span> total, split equally</li>
+            <li><span class="payout-amount"><span id="po-fee">0.0625</span> <span style="color:var(--accent)">BTC</span> <span class="usd-val" id="po-fee-usd"></span></span> pool fee (2%)</li>
+          </ol>
+          <p style="margin-top:.75rem;font-size:.82rem;color:var(--muted);font-style:italic;">All outputs in coinbase — fully trustless.</p>
+        </div>
+      </div>
+      <div class="card info-card">
+        <div class="info-icon">💎</div>
+        <div class="info-title">Quality Over Quantity</div>
+        <div class="info-desc">Only your single best share this round determines your rank. Higher hashrate means a statistically better chance of producing a high-quality share — but you don't need to outwork everyone, just outperform on one share.</div>
+      </div>
+      <div class="card info-card">
+        <div class="info-icon">🏖️</div>
+        <div class="info-title">Mine When You Want</div>
+        <div class="info-desc">Once you're in Best 100 list, you're free to stop. You'll collect your reward if and when a block is found — no need to keep mining. Just check your rank from time to time. If you've dropped below #100, fire up your miner again to reclaim your spot.</div>
+      </div>
+    </div>
+
+    <!-- Quick Connect -->
+    <h2 class="section-title" style="margin-top:2.5rem">Quick Connect</h2>
+    <div class="card connect-card">
+      <div class="connect-row">
+        <span class="connect-label">Stratum</span>
+        <code class="connect-value">bitcoin.solo100.org:3333</code>
+      </div>
+      <p class="input-hint" style="margin-top:.3rem">Rentals (Braiins / NiceHash): use port <code>4444</code></p>
+      <div class="connect-row" style="margin-top:.75rem">
+        <span class="connect-label">Username</span>
+        <code class="connect-value">your BTC address.workername</code>
+      </div>
+      <p class="input-hint">e.g. <code>bc1q…youraddress.bitaxe1</code> — no registration required</p>
+      <div class="connect-row">
+        <span class="connect-label">Password</span>
+        <code class="connect-value">x</code>
+      </div>
+      <p class="tip-note">💡 <strong>It is statistically better to give each device its own Bitcoin address</strong> — not just a different worker name. Every unique address competes as an independent entry in Best 100, giving each device its own shot at qualifying. <a href="#" onclick="switchSection('strategy');return false;">See Strategies →</a></p>
+    </div>
+
+    <div data-disclaimer></div>
+
+  </section>
+
+  <!-- ══════════════════════════════════════════════════════════
+       CONNECT
+  ══════════════════════════════════════════════════════════ -->
+  <section id="connect" class="section">
+
+    <h2 class="section-title" style="margin-top:.5rem">Connection Details</h2>
+    <div class="card connect-card" style="margin-bottom:1.5rem">
+      <div class="connect-row">
+        <span class="connect-label">Stratum</span>
+        <code class="connect-value">bitcoin.solo100.org:3333</code>
+        <button class="copy-btn" id="copy-stratum-btn" onclick="copyStratum()">Copy</button>
+      </div>
+      <p class="input-hint" style="margin-top:.3rem">Rentals (Braiins / NiceHash): use port <code>4444</code> — <button onclick="copyStratumHD()" id="copy-stratum-hd-btn" class="link-btn">copy</button></p>
+      <div class="connect-row" style="margin-top:.75rem">
+        <span class="connect-label">Username</span>
+        <code class="connect-value">YOUR_BTC_ADDRESS.worker1</code>
+      </div>
+      <p class="input-hint">Use your Bitcoin address as username. Append a worker name after a dot: <code>bc1q…address.bitaxe1</code></p>
+      <div class="connect-row">
+        <span class="connect-label">Password</span>
+        <code class="connect-value">x</code>
+      </div>
+      <p class="tip-note">💡 <strong>It is statistically better to give each device its own Bitcoin address</strong> — not just a different worker name. Every unique address competes as an independent entry in Best 100, giving each device its own shot at qualifying. <a href="#" onclick="switchSection('strategy');return false;">See Strategies →</a></p>
+    </div>
+
+    <h2 class="section-title">Example Config</h2>
+    <div class="card">
+      <div class="config-tabs">
+        <button class="tab-btn active" data-tab="bitaxe">Bitaxe</button>
+        <button class="tab-btn" data-tab="avalon">Avalon Nano / Q</button>
+        <button class="tab-btn" data-tab="braiins">Braiins</button>
+        <button class="tab-btn" data-tab="nicehash">NiceHash</button>
+        <button class="tab-btn" data-tab="cpuminer">cpuminer</button>
+        <button class="tab-btn" data-tab="cgminer">cgminer</button>
+      </div>
+
+      <div id="tab-bitaxe" class="bitaxe-ui mockup-ui active">
+        <div class="bitaxe-header"><span class="bitaxe-logo">⛏</span><span>Pool Settings</span></div>
+        <div class="bitaxe-form">
+          <div class="bitaxe-field"><label>Stratum Host</label><input type="text" value="bitcoin.solo100.org" readonly /></div>
+          <div class="bitaxe-field"><label>Stratum Port</label><input type="text" value="3333" readonly /></div>
+          <div class="bitaxe-field"><label>User</label><input type="text" value="YOUR_BTC_ADDRESS.bitaxe1" readonly /></div>
+          <div class="bitaxe-field"><label>Password</label><input type="text" value="x" readonly /></div>
+        </div>
+      </div>
+
+      <div id="tab-avalon" class="avalon-ui mockup-ui">
+        <div class="avalon-header"><span class="avalon-logo">⛏</span><span>Pool Configuration</span></div>
+        <div class="avalon-form">
+          <div class="avalon-field"><label>Pool 1 URL</label><input type="text" value="stratum+tcp://bitcoin.solo100.org:3333" readonly /></div>
+          <div class="avalon-field"><label>Pool 1 Worker</label><input type="text" value="YOUR_BTC_ADDRESS.avalon1" readonly /></div>
+          <div class="avalon-field"><label>Pool 1 Password</label><input type="text" value="x" readonly /></div>
+        </div>
+      </div>
+
+      <div id="tab-braiins" class="braiins-ui mockup-ui">
+        <div class="braiins-header"><span class="braiins-logo">⛏</span><span>Favourite Pools</span></div>
+        <div class="braiins-form">
+          <div class="braiins-field"><label>Pool URL</label><input type="text" value="YOUR_BTC_ADDRESS.braiins@stratum+tcp://bitcoin.solo100.org:4444" readonly /></div>
+        </div>
+      </div>
+
+      <div id="tab-nicehash" class="nicehash-ui mockup-ui">
+        <div class="nicehash-header"><span class="nicehash-logo">⛏</span><span>Add new pool</span></div>
+        <div class="nicehash-form">
+          <div class="nicehash-field"><label>Custom pool name</label><input type="text" value="bitcoin.solo100.org" readonly /></div>
+          <div class="nicehash-field">
+            <label>Algorithm</label>
+            <select disabled><option>SHA256AsicBoost</option></select>
+          </div>
+          <p class="nicehash-note">minimum pool difficulty: &gt;= 500000</p>
+          <div class="nicehash-row">
+            <div class="nicehash-field"><label>Stratum hostname or IP</label><input type="text" value="bitcoin.solo100.org" readonly /></div>
+            <div class="nicehash-field"><label>Port</label><input type="text" value="4444" readonly /></div>
+          </div>
+          <div class="nicehash-field"><label>Username</label><input type="text" value="YOUR_BTC_ADDRESS.nicehash" readonly /></div>
+          <div class="nicehash-field"><label>Password</label><input type="text" value="x" readonly /></div>
+        </div>
+      </div>
+
+      <pre id="tab-cpuminer" class="config-block"><code>cpuminer-opt \
+  -a sha256d \
+  -o stratum+tcp://bitcoin.solo100.org:3333 \
+  -u YOUR_BTC_ADDRESS.worker1 \
+  -p x</code></pre>
+
+      <pre id="tab-cgminer" class="config-block"><code>cgminer \
+  --url stratum+tcp://bitcoin.solo100.org:3333 \
+  --user YOUR_BTC_ADDRESS.worker1 \
+  --pass x</code></pre>
+    </div>
+
+    <h2 class="section-title" style="margin-top:2.5rem">Connection and Config Notes</h2>
+    <div class="card" style="display:flex;flex-direction:column;gap:.75rem;">
+      <div class="info-title">⚠️ &nbsp;Large Coinbase Output with 102 payments — known problems:</div>
+      <div class="info-desc">solo100.org pays out 102 recipients per block — 100 Best 100 addresses, the block finder, and the pool fee. This makes our coinbase transaction unusually large. Some mining software and firmware cannot handle it and will fail to verify the pool or connect altogether.</div>
+      <div style="border-top:1px solid var(--border);padding-top:1rem;display:flex;flex-direction:column;gap:1rem;">
+        <div>
+          <div style="font-size:.9rem;font-weight:500;margin-bottom:.3rem;">NiceHash pool verificator may fail</div>
+          <div class="info-desc">The verificator will likely reject solo100.org. You can ignore it and save the pool anyway — but we haven't tested this ourselves yet. Let us know if it works for you in our <a href="https://t.me/solochanceorg" target="_blank" rel="noopener">Telegram channel</a>.</div>
+        </div>
+        <div>
+          <div style="font-size:.9rem;font-weight:500;margin-bottom:.3rem;">NerdQaxe models may have connection issues</div>
+          <div class="info-desc">Known firmware bug. Fix expected in version <strong>1.0.37</strong> — update once available.</div>
+        </div>
+        <div>
+          <div style="font-size:.9rem;font-weight:500;margin-bottom:.3rem;">NerdNOS models do not work with solo100.org</div>
+          <div class="info-desc">Cannot connect or submit shares. Exact cause unconfirmed — most likely the same coinbase output issue. No fix available yet.</div>
+        </div>
+      </div>
+    </div>
+
+    <div data-disclaimer></div>
+
+  </section>
+
+  <!-- ══════════════════════════════════════════════════════════
+       MY STATS
+  ══════════════════════════════════════════════════════════ -->
+  <section id="mystats" class="section">
+
+    <h2 class="section-title" style="margin-top:.5rem">My Stats</h2>
+
+    <div class="card lookup-card">
+      <div class="lookup-row">
+        <input type="text" class="address-input" id="addr-input"
+               placeholder="bc1q… your Bitcoin address"
+               onkeydown="if(event.key==='Enter') lookupStats()" />
+        <button class="btn-primary" onclick="lookupStats()">Look Up</button>
+      </div>
+      <p class="input-hint">Enter your Bitcoin address — it's also your mining username.</p>
+    </div>
+
+    <div id="ms-banner" class="warming-banner hidden">
+      <span class="warming-icon">⚠️</span>
+      <div>
+        <strong id="ms-banner-title">Address not found</strong>
+        <p id="ms-banner-msg">This address hasn't connected to the pool yet.</p>
+      </div>
+    </div>
+
+    <div id="ms-main-grid" class="card-grid three hidden" style="margin-top:1rem">
+      <div class="card stat-card">
+        <div class="stat-label">Current Hashrate</div>
+        <div class="stat-value" id="ms-hr1m" style="font-size:1.3rem">—</div>
+      </div>
+      <div class="card stat-card">
+        <div class="stat-label">Best Share (Round)</div>
+        <div class="stat-value" id="ms-bestshare-grid" style="font-size:1.3rem">—</div>
+      </div>
+      <div class="card stat-card">
+        <div class="stat-label">Last Share</div>
+        <div class="stat-value" id="ms-lastseen" style="font-size:1.1rem">—</div>
+      </div>
+    </div>
+
+    <div id="ms-best100-card" class="card hidden" style="margin-top:1rem;display:flex;align-items:center;justify-content:space-between;gap:1rem;flex-wrap:wrap;">
+      <div>
+        <div class="stat-label" style="margin-bottom:.3rem">Current Round Status</div>
+        <div style="font-size:.85rem;color:var(--muted)">Est. Payout: <strong id="ms-est-payout" style="color:var(--accent)">—</strong> <strong style="color:var(--accent)">BTC</strong> <span id="ms-est-payout-usd" class="usd-val"></span></div>
+        <div id="ms-rank-row" style="font-size:.85rem;color:var(--muted);margin-top:.2rem;display:none">Rank: <strong id="ms-rank" style="color:var(--accent)">—</strong></div>
+        <div id="ms-cutoff-row" style="font-size:.85rem;color:var(--muted);margin-top:.2rem;display:none">Min. required share: <strong id="ms-cutoff-share" style="color:var(--red)">—</strong></div>
+      </div>
+      <span id="ms-best100-pill"></span>
+    </div>
+
+    <div id="ms-workers-card" class="card hidden" style="margin-top:1.5rem">
+      <h2 class="section-title" style="margin-top:0;margin-bottom:.75rem">Workers</h2>
+      <div style="overflow-x:auto">
+        <table class="workers-table">
+          <thead>
+            <tr>
+              <th>Worker</th>
+              <th>Hashrate (1m)</th>
+              <th>Best Share</th>
+              <th>Last Share</th>
+            </tr>
+          </thead>
+          <tbody id="ms-workers-tbody"></tbody>
+        </table>
+      </div>
+    </div>
+
+    <div id="ms-raw-card" class="card hidden" style="margin-top:1.5rem">
+      <h2 class="section-title" style="margin-top:0;margin-bottom:.75rem">Raw Response</h2>
+      <pre id="ms-curl" class="config-block active" style="color:var(--muted);font-size:.8rem;margin-bottom:.75rem"></pre>
+      <pre id="ms-raw" class="config-block active" style="max-height:300px;overflow:auto"></pre>
+    </div>
+
+    <div data-disclaimer></div>
+
+  </section>
+
+  <!-- ══════════════════════════════════════════════════════════
+       BEST 100
+  ══════════════════════════════════════════════════════════ -->
+  <section id="best100" class="section">
+
+    <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:.75rem;margin-bottom:1rem;">
+      <h2 class="section-title" style="margin-bottom:0;">Current Best 100 Shares</h2>
+      <span class="live">Live</span>
+    </div>
+
+    <p style="font-size:.82rem;color:var(--muted);margin-bottom:.75rem;">Only the best 200 addresses are shown here. If your address isn't listed, use <button onclick="switchSection('mystats')" style="background:none;border:none;color:var(--accent);font-family:var(--font);font-size:.82rem;cursor:pointer;padding:0;text-decoration:underline;">My Stats</button> to look up your best share.</p>
+    <div class="card table-card">
+      <div class="lb-table-wrap">
+        <table class="lb-table">
+          <thead>
+            <tr>
+              <th style="width:44px;">#</th>
+              <th>Miner Address</th>
+              <th class="col-bs">Best Share</th>
+              <th class="col-pay">Est. Payout</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody id="lb">
+            <tr><td colspan="5" style="text-align:center;padding:2.5rem;color:var(--muted);">Loading…</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <p style="font-size:.8rem;color:var(--muted);margin-top:.75rem;">Payout estimates assume current block value of <span id="lb-block-total">3.125</span> BTC. Actual payout depends on when (and if) the block is found.</p>
+
+    <div data-disclaimer></div>
+
+  </section>
+
+  <!-- ══════════════════════════════════════════════════════════
+       BLOCKS
+  ══════════════════════════════════════════════════════════ -->
+  <section id="blocks" class="section">
+
+    <h2 class="section-title" style="margin-top:.5rem">Blocks Found</h2>
+    <div>
+      <div class="warming-banner">
+        <span class="warming-icon">🧱</span>
+        <div>
+          <strong>No blocks found yet.</strong>
+          <p>solo100.org is still in beta and didn't find any block yet.</p>
+        </div>
+      </div>
+    </div>
+
+    <div data-disclaimer></div>
+
+  </section>
+
+  <!-- ══════════════════════════════════════════════════════════
+       STRATEGY
+  ══════════════════════════════════════════════════════════ -->
+  <section id="strategy" class="section">
+
+    <h2 class="section-title" style="margin-top:.5rem">Strategy Tips</h2>
+    <div style="display:flex;flex-direction:column;gap:.75rem;">
+      <div class="card">
+        <div class="info-title">🔄 &nbsp;Rotate addresses once you've secured a strong share</div>
+        <div class="info-desc">Each address holds exactly one leaderboard slot. Once you're well inside Best 100, extra hashing on that address does little. Switch to a fresh address to compete for a second slot — or continue regular solo mining and rejoin next round.</div>
+      </div>
+      <div class="card">
+        <div class="info-title">⚡ &nbsp;Short rental bursts beat sustained campaigns</div>
+        <div class="info-desc">Only Best 100 shares matter — not total work. A targeted burst of rented hash at the start of a fresh round is far more efficient than renting for the whole round. Use a fresh Bitcoin address for each rental — each address gets its own leaderboard slot. Since all 100 qualifying miners earn the same 0.0275 BTC regardless of rank, improving an already-secured slot doesn't increase your payout. Point that hash at a new address instead.</div>
+      </div>
+      <div class="card">
+        <div class="info-title">🏖️ &nbsp;Mine a little, park your spot, mine elsewhere</div>
+        <div class="info-desc">You don't need to mine here full time. All that matters is that your address is inside Best 100 when a block is found. Mine enough to secure a spot, then point your hardware at another pool in the meantime — no pressure. Just check back occasionally to make sure you're still inside the cutoff, since new miners keep joining and the competition shifts over time.</div>
+      </div>
+      <div class="card">
+        <div class="info-title">🤏 &nbsp;Smaller miners punch above their weight here</div>
+        <div class="info-desc">A fleet of smaller machines under different addresses can hold multiple Best 100 slots simultaneously. More slots = more expected payout exposure per block found.</div>
+      </div>
+      <div class="card">
+        <div class="info-title">🚀 &nbsp;Join early in a fresh round</div>
+        <div class="info-desc">Right after a block is found the leaderboard resets and every slot is open. Even a modest share can land a top position before the field fills up. If the pool gets lucky and finds a block at low effort, early joiners benefit the most — check your position regularly to make sure you're still inside Best 100 as the round progresses.</div>
+      </div>
+      <div class="card">
+        <div class="info-title">👁️ &nbsp;Watch the cutoff line</div>
+        <div class="info-desc">The Best 100 leaderboard shows where the cutoff sits in real time. If you're comfortably inside the top 50 on one address, start a second. If you're just outside, a short burst may push you in.</div>
+      </div>
+      <div class="card">
+        <div class="info-title">⏰ &nbsp;Your payout will arrive — but patience is required</div>
+        <div class="info-desc">When solo100.org finds a block, qualifying miners in Best 100 will receive their Bitcoin directly to the address they mined with. However, newly mined coins (coinbase outputs) are locked by the Bitcoin protocol for <strong>100 block confirmations</strong> — roughly 16–17 hours — before they become spendable. This is a Bitcoin consensus rule that applies to all mining pools worldwide, not something specific to solo100.org. If your wallet shows the coins but won't let you spend them yet, that's why. Please don't reach out on Telegram or X about this — it will resolve on its own.</div>
+      </div>
+    </div>
+
+    <div data-disclaimer></div>
+
+  </section>
+
+  <!-- ══════════════════════════════════════════════════════════
+       DISCLAIMER
+  ══════════════════════════════════════════════════════════ -->
+  <section id="disclaimer" class="section">
+
+    <h2 class="section-title" style="margin-top:.5rem">Disclaimer</h2>
+
+    <p style="font-size:1.25rem;font-weight:500;color:var(--text);line-height:1.6;margin-bottom:1rem;">⚠️ Read the following text very carefully and proceed only if you accept all of the conditions.</p>
+    <div id="google_translate_element" style="margin-bottom:1.5rem;"></div>
+
+    <!-- Summary -->
+    <div class="card" style="background:rgba(248,81,73,.07);border:1px solid rgba(248,81,73,.25);margin-bottom:1.5rem;">
+      <p style="color:var(--text);font-size:.95rem;line-height:1.7;">
+        solo100.org is in beta and extremely early in development. It is immature in several areas of pool software and management. Think of it as a hobby, an experiment, and entertainment. Join only if you are comfortable knowing it can go down or go wrong at any minute, in any way, permanently or indefinitely. Remember this a thousand times: <strong style="color:var(--red)">this website, its software, and the individual behind it do not promise anything — at any level, in any context.</strong>
+      </p>
+    </div>
+
+    <!-- Warning card with nested items -->
+    <div class="card" style="background:var(--yellow-bg);border:1px solid var(--yellow-bd);margin-bottom:1.5rem;">
+      <p style="color:var(--text);font-size:.9rem;line-height:1.7;margin-bottom:.75rem;">
+        <strong style="color:var(--yellow)">You will not get paid in the following situations</strong> — any of them are possible, and all are inherent risks in running a new Bitcoin mining pool.
+      </p>
+
+      <!-- Nested items -->
+      <div style="display:flex;flex-direction:column;gap:.6rem;">
+
+        <div class="card">
+          <div class="info-title">🛠️ &nbsp;Software bugs and misconfigurations</div>
+          <div class="info-desc">
+            It is entirely possible that there are bugs in the pool software that could:
+            <ul style="margin:.6rem 0 .6rem 1.2rem;display:flex;flex-direction:column;gap:.25rem;">
+              <li>prevent block finding altogether,</li>
+              <li>fail to deliver a found block to the node,</li>
+              <li>fail to propagate a received block correctly.</li>
+            </ul>
+            To prevent this, we did our best. We have already tested the latest version of the pool software and found 2 test blocks:
+            <ul style="margin:.5rem 0 .6rem 1.2rem;display:flex;flex-direction:column;gap:.25rem;">
+              <li><a href="https://mempool.space/testnet4/tx/21bb305b26d97adc99a045a0f4184490b18570c77d00f3645296ac9dd2a40762" target="_blank" rel="noopener" style="font-family:var(--mono);font-size:.8rem;word-break:break-all;">mempool.space · 21bb305b…</a></li>
+              <li><a href="https://mempool.space/testnet4/tx/053817e00554d7ccebda545455784f192bc0073f407d1f74b043a9a6f8c53cd5" target="_blank" rel="noopener" style="font-family:var(--mono);font-size:.8rem;word-break:break-all;">mempool.space · 053817e0…</a></li>
+            </ul>
+            We continue developing the pool software. You can join testing at <a href="https://test.solo100.org" target="_blank" rel="noopener">test.solo100.org</a>.<br><br>
+            Long story short, this project is in beta and has not been tested against real Bitcoin mainnet conditions. Please use the battle-tested solo pools listed at the end of this page if you will be extremely upset about missing a found block due to pool software, config, or other unforeseen issues.
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="info-title">⛓️ &nbsp;Orphaned blocks</div>
+          <div class="info-desc">
+            Orphaned blocks are a natural part of the Bitcoin network — any block can be orphaned before 2–3 confirmations. We could find a block and later lose it due to a chain reorganisation. This is not specific to solo100.org; it can happen to any mining pool.
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="info-title">🕰️ &nbsp;Stale shares</div>
+          <div class="info-desc">
+            A stale share arrives after the round has already closed and cannot be counted. In the most extreme case, if a stale share carried enough difficulty to find a block, it will still be rejected — no block submitted, nobody gets paid. A winning share that arrives too late is simply discarded.
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="info-title">📝 &nbsp;Mistyped or forgotten Bitcoin addresses</div>
+          <div class="info-desc">
+            Because our payment scheme is so different, you could potentially win a significant amount of Bitcoin years after the best share that placed you in the Best 100 list was sent. It is entirely your responsibility to control everything about your address. With coinbase output payments, we never touch your reward throughout the entire process.
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="info-title">📉 &nbsp;Being pushed out of Best 100</div>
+          <div class="info-desc">
+            Especially if you are in position #98, #99, or #100, an address with a higher best share can drop you from Best 100 at any moment — including the very last seconds before a block is found. In that case, you will not receive a reward, even if your address was visible in the list the entire time.
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="info-title">⏱️ &nbsp;Joining Best 100 list too late</div>
+          <div class="info-desc">
+            If your address submitted a best share just seconds before a block was found, it will not get paid — because it was not yet included in the block template distributed to the block finder's mining device. If your address has been in the list for more than a minute when a block is found, this issue will not affect you in any way.
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="info-title">🎭 &nbsp;Malicious pool operator</div>
+          <div class="info-desc">
+            In any pool where multiple miners share a block reward, there is a trust problem that cannot be solved on-chain: you cannot verify that the other participants are real.
+            <br><br>
+            On solo100.org, the operator could silently inject fake entries into Best 100 — addresses they control, with fabricated share values that never existed. There is no cryptographic proof that any submitted share is genuine. The leaderboard you see could be entirely real, partially fake, or completely fabricated. You have no way to tell.
+            <br><br>
+            solo100.org has no fake entries, no fabricated shares, and no manipulation of the leaderboard of any kind. Every address you see competed genuinely. But the only evidence of this is the operator's word — there is no way to audit it at all.
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="info-title">⚖️ &nbsp;Legal risks</div>
+          <div class="info-desc">
+            Bitcoin history is full of products, services, and projects that were entirely lawful when they launched — and were later deemed unlawful retroactively.
+            <br><br>
+            Any court order or order from any governmental body can cause termination of this service indefinitely with no prior notice. In that case, your shares in Best 100 will be void with no recourse.
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="card" style="background:rgba(248,81,73,.07);border:1px solid rgba(248,81,73,.25);margin-top:1.5rem;">
+      <p style="color:var(--red);font-size:.95rem;line-height:1.7;margin-bottom:1rem;">
+        <strong>Your last warning:</strong> This is an exotic and experimental project run by a very new individual in pool management — who is actually running his first pool software modification and his first pool ever.
+      </p>
+      <p style="color:var(--text);font-size:.9rem;line-height:1.7;margin-bottom:.6rem;">To take no risk, use the following pools:</p>
+      <ul style="list-style:none;padding:0;display:flex;flex-direction:column;gap:.4rem;font-size:.9rem;">
+        <li><a href="https://solo.ckpool.org" target="_blank" rel="noopener">ckpool</a></li>
+        <li><a href="https://web.public-pool.io" target="_blank" rel="noopener">public-pool</a></li>
+        <li><a href="https://atlaspool.io/" target="_blank" rel="noopener">atlaspool.io</a></li>
+      </ul>
+    </div>
+
+    <div data-disclaimer></div>
+
+  </section>
+
+  <!-- ══════════════════════════════════════════════════════════
+       FAQ
+  ══════════════════════════════════════════════════════════ -->
+  <section id="faq" class="section">
+
+    <h2 class="section-title" style="margin-top:.5rem">FAQ</h2>
+    <div class="faq-list">
+
+      <details class="faq-item">
+        <summary>What is solo100.org?</summary>
+        <p>solo100.org is a Bitcoin mining pool with a unique reward model, a SoloChance.org project. Instead of splitting the reward across all miners by total work, solo100.org rewards only the 100 miners who submitted the highest-quality shares in the current round — each earning an equal 0.0275 BTC (0.88% of the block reward). The block finder also earns a 10% bonus on top.</p>
+      </details>
+
+      <details class="faq-item">
+        <summary>How is share quality measured?</summary>
+        <p>Share quality is measured by difficulty — how close the share's hash is to satisfying the full Bitcoin network difficulty. Each miner is ranked by their single best share this round. Higher hashrate gives a statistically better chance of producing a high-quality share.</p>
+      </details>
+
+      <details class="faq-item">
+        <summary>What if I'm not in Best 100?</summary>
+        <p>Miners ranked #101 and below receive no payout for that round. The leaderboard resets every block, so every round is a fresh opportunity. Think of it like solo mining — but 100 people share the win instead of one.</p>
+      </details>
+
+      <details class="faq-item">
+        <summary>Can one miner hold multiple slots?</summary>
+        <p>No. Each Bitcoin address holds at most one leaderboard position, determined by its single best share. Running multiple distinct Bitcoin addresses gives each its own independent position — which is a valid strategy for maximising your expected payout.</p>
+      </details>
+
+      <details class="faq-item">
+        <summary>When and how do I get paid?</summary>
+        <p>Payouts are coinbase outputs — paid directly in the block your pool finds, to the Bitcoin address you mined with. No account or registration required. However, coinbase outputs are locked by the Bitcoin protocol for <strong>100 block confirmations</strong> (roughly 16–17 hours) before they become spendable. This is a consensus rule that applies to every mining pool in existence.</p>
+      </details>
+
+      <details class="faq-item">
+        <summary>What hardware do I need?</summary>
+        <p>Any SHA-256 ASIC works — Antminer S-series, Whatsminer M-series, AvalonMiner, Bitaxe, etc. The pool uses standard Stratum v1, compatible with virtually all modern Bitcoin mining hardware and software.</p>
+      </details>
+
+      <details class="faq-item">
+        <summary>What is the pool fee?</summary>
+        <p>2% of each block reward — exactly 0.0625 BTC <span class="usd-val" data-btc="0.0625"></span> per block. This covers server infrastructure, development, and maintenance. No hidden fees or withdrawal charges.</p>
+      </details>
+
+      <details class="faq-item">
+        <summary>Is this safe? Do I need to trust the pool?</summary>
+        <p>You never deposit funds. You point your miner at the stratum server; if a block is found, payouts go to your Bitcoin address automatically. The only risk is opportunity cost — if no block is found this round, those shares yield nothing (same as solo mining). You can stop at any time.</p>
+      </details>
+
+      <details class="faq-item">
+        <summary>I can see my payout in my wallet but can't spend it — why?</summary>
+        <p>This is completely normal. Coinbase outputs — the direct payout from a mined block — are locked by the Bitcoin protocol for <strong>100 block confirmations</strong> before they become spendable. At roughly 10 minutes per block, that's about 16–17 hours after the block is found. Your coins are safe; they just need to mature. This rule applies to every Bitcoin mining pool in existence and is enforced at the protocol level. Please don't reach out on Telegram or X about this — the wait is automatic and there is nothing anyone can do to speed it up.</p>
+      </details>
+
+      <details class="faq-item">
+        <summary>Where is solo100.org located?</summary>
+        <p>The pool server runs in Frankfurt, Germany. Invoicing and domain purchases are handled through Estonia, thanks to the Estonian e-Residency programme, which allows individuals to access EU digital services without being a resident. The operator lives somewhere else.</p>
+      </details>
+
+      <details class="faq-item">
+        <summary>Why are all Bitcoin addresses public? Why not mask them until a valid share is found?</summary>
+        <p>To be fully trustless, all payouts must be coinbase outputs — written directly into the block by the miner who finds it, with no pool operator touching the coins at any point. By the nature of that design, Bitcoin addresses must be declared upfront and are therefore public, just as they would be in any coinbase transaction on the Bitcoin blockchain.</p>
+      </details>
+
+    </div>
+
+  </section>
+
+</main>
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer-inner">
+      <span>Built in 🇪🇪 Estonia · Hosted in 🇩🇪 Germany</span>
+      <span>© <span class="s100">solo<span class="accent">100</span>.org</span> · a <a href="https://solochance.org" target="_blank" rel="noopener">SoloChance.org</a> project</span>
+      <span><a href="/terms.html">Terms</a> · <a href="/privacy.html">Privacy</a></span>
+    </div>
+  </div>
+</footer>
+
+<script>
+// ── Helpers ────────────────────────────────────────────────
+function fmtDiff(d) {
+  if (d >= 1e12) return (d/1e12).toFixed(2) + ' T';
+  if (d >= 1e9)  return (d/1e9).toFixed(2)  + ' G';
+  if (d >= 1e6)  return (d/1e6).toFixed(2)  + ' M';
+  return d.toFixed(0);
+}
+
+// ── BTC price & USD ────────────────────────────────────────
+let btcPrice = 0;
+let leaderboardMiners = [];
+function toUSD(btc) {
+  if (!btcPrice) return '';
+  return '($' + Math.round(btc * btcPrice).toLocaleString() + ')';
+}
+function updateUsdValues() {
+  document.querySelectorAll('[data-btc]').forEach(el => {
+    el.textContent = toUSD(parseFloat(el.dataset.btc));
+  });
+}
+// ── Stats ──────────────────────────────────────────────────
+
+function fmtShort(n) {
+  const fmt = v => v % 1 === 0 ? v.toFixed(0) : v.toFixed(1);
+  if (n >= 1e15) return fmt(n / 1e15) + ' P';
+  if (n >= 1e12) return fmt(n / 1e12) + ' T';
+  if (n >= 1e9)  return fmt(n / 1e9)  + ' G';
+  if (n >= 1e6)  return fmt(n / 1e6)  + ' M';
+  if (n >= 1e3)  return fmt(n / 1e3)  + ' K';
+  return n.toString();
+}
+
+function hashrateToHps(str) {
+  if (str == null) return 0;
+  if (typeof str === 'number') return str;
+  const m = String(str).match(/^([\d.]+)\s*([KMGTP]?)$/i);
+  if (!m) return 0;
+  const units = { '': 1, K: 1e3, M: 1e6, G: 1e9, T: 1e12, P: 1e15 };
+  return parseFloat(m[1]) * (units[m[2].toUpperCase()] ?? 1);
+}
+
+async function loadPoolChances(hashrate) {
+  const thps = hashrateToHps(hashrate) / 1e12;
+  if (!thps) return;
+  let d;
+  try {
+    const res = await fetch(`https://api.solochance.org/getSoloChanceCalculations?currency=BTC&hashrate=${thps.toFixed(6)}&hashrateUnit=TH`);
+    d = await res.json();
+  } catch(e) { return; }
+
+  if (d.price) {
+    btcPrice = d.price;
+    const p = document.getElementById('s-price');
+    if (p) { p.textContent = '$' + btcPrice.toLocaleString(); p.classList.remove('skeleton'); }
+    updateUsdValues();
+  }
+  if (d.networkHashrateText) {
+    const el = document.getElementById('s-diff');
+    if (el) { el.textContent = d.networkHashrateText; el.classList.remove('skeleton'); }
+  }
+
+  function cSet(id, val) {
+    const el = document.getElementById(id);
+    if (el) { el.textContent = val; el.classList.remove('skeleton'); }
+  }
+  cSet('s-chance-day',  d.dayChanceText   || '—');
+  cSet('s-chance-week', d.weekChanceText  || '—');
+  cSet('s-chance-month',d.monthChanceText || '—');
+  document.getElementById('pool-chances-section').classList.remove('hidden');
+}
+
+function formatUptime(seconds) {
+  if (seconds == null || isNaN(seconds)) return '—';
+  const d = Math.floor(seconds / 86400);
+  const h = Math.floor((seconds % 86400) / 3600);
+  const m = Math.floor((seconds % 3600) / 60);
+  if (d > 0) return `${d} ${d === 1 ? 'day' : 'days'}`;
+  if (h > 0) return `${h} ${h === 1 ? 'hour' : 'hours'}`;
+  return `${m} ${m === 1 ? 'minute' : 'minutes'}`;
+}
+
+async function fetchPoolStatus() {
+  let lines;
+  try {
+    const res = await fetch('https://bitcoin.solo100.org/pool/pool.status');
+    const text = await res.text();
+    lines = text.trim().split('\n').filter(Boolean).map(l => JSON.parse(l));
+  } catch(e) { return; }
+
+  document.getElementById('pool-warming').classList.add('hidden');
+  document.getElementById('pool-stats-grid').classList.remove('hidden');
+
+  const info   = lines.find(l => l.Users  != null);
+  const hrates = lines.find(l => l.hashrate1m != null);
+  const stats  = lines.find(l => l.accepted  != null);
+
+  function sSet(id, val) {
+    const el = document.getElementById(id);
+    if (!el) return;
+    el.textContent = val;
+    el.classList.remove('skeleton');
+  }
+
+  if (info)   sSet('s-miners', info.Users);
+  if (info)   sSet('s-uptime', formatUptime(info.runtime));
+  if (hrates) {
+    sSet('s-hr', fmtShort(hashrateToHps(hrates.hashrate1m)));
+    loadPoolChances(hrates.hashrate1m);
+  }
+  if (stats) {
+    sSet('s-best',   fmtDiff(stats.bestshare));
+    sSet('s-shares', fmtShort(stats.accepted));
+  }
+}
+
+// ── Leaderboard ────────────────────────────────────────────
+async function initLeaderboard() {
+  const lb = document.getElementById('lb');
+  let lines;
+  try {
+    const res = await fetch('https://bitcoin.solo100.org/pool/nsolo.status');
+    const text = await res.text();
+    lines = text.trim().split('\n').filter(Boolean).map(l => JSON.parse(l));
+  } catch(e) {
+    if (lb) lb.innerHTML = '<tr><td colspan="5" style="text-align:center;color:var(--muted);padding:2rem;">Could not load leaderboard.</td></tr>';
+    return;
+  }
+
+  const finder  = lines.find(l => l.role === 'finder');
+  const poolFee = lines.find(l => l.role === 'pool_fee');
+  const miners  = lines.filter(l => l.rank != null).sort((a, b) => a.rank - b.rank);
+  leaderboardMiners = miners;
+
+  const blockTotal = lines.reduce((sum, l) => sum + (l.btc || 0), 0);
+  const lbTotal = document.getElementById('lb-block-total');
+  if (lbTotal && blockTotal > 0) lbTotal.textContent = blockTotal.toFixed(4);
+
+  const top100  = miners.filter(m => m.rank <= 100);
+  const count   = top100.length;
+  const eachBtc = count > 0 ? top100[0].btc : 0;
+  const totalBtc = count * eachBtc;
+
+  const cutoff = miners.find(m => m.rank === 100);
+  const cutoffCard = document.getElementById('lb-cutoff-card');
+  if (cutoff && cutoffCard) {
+    const btcVal = cutoff.btc || eachBtc || 0.0275;
+    const cutoffShareEl = document.getElementById('lb-cutoff-share');
+    const cutoffBtcEl   = document.getElementById('lb-cutoff-btc');
+    const cutoffUsdEl   = document.getElementById('lb-cutoff-usd');
+    if (cutoffShareEl) cutoffShareEl.textContent = fmtDiff(cutoff.bestshare);
+    if (cutoffBtcEl)   cutoffBtcEl.textContent   = btcVal.toFixed(4);
+    if (cutoffUsdEl)   { cutoffUsdEl.dataset.btc = btcVal; cutoffUsdEl.textContent = toUSD(btcVal); }
+    cutoffCard.classList.remove('hidden');
+  }
+
+  function poSet(id, val, usdId) {
+    const el = document.getElementById(id);
+    if (el) el.textContent = typeof val === 'number' ? val.toFixed(4) : val;
+    if (usdId) { const u = document.getElementById(usdId); if (u) { u.dataset.btc = val; u.textContent = toUSD(val); } }
+  }
+  if (finder)  poSet('po-finder', finder.btc,  'po-finder-usd');
+  if (count)   poSet('po-each',   eachBtc,     'po-each-usd');
+  if (count)   poSet('po-total',  totalBtc,    'po-total-usd');
+  if (poolFee) poSet('po-fee',    poolFee.btc, 'po-fee-usd');
+  const poCount = document.getElementById('po-count');
+  if (poCount) poCount.textContent = count || 100;
+
+  let html = '';
+
+  if (finder) {
+    const finderBtc = finder.btc || 0.3125;
+    const finderAddr = finder.address !== 'unknown' ? finder.address : 'Block Finder';
+    html += `<tr style="background:rgba(247,147,26,.06);border-bottom:2px solid rgba(247,147,26,.2);">
+      <td class="rnk pod">🏆</td>
+      <td class="addr-cell" style="color:var(--accent);font-weight:500;">${finderAddr}</td>
+      <td class="col-bs" style="text-align:right;">🚀</td>
+      <td class="pay-cell in col-pay">${finderBtc.toFixed(4)} BTC <span class="usd-val" data-btc="${finderBtc}"></span></td>
+      <td><span class="pill pill-hero">OUR HERO</span></td>
+    </tr>`;
+  }
+
+  for (let i = 0; i < miners.length; i++) {
+    const m = miners[i];
+    const inTop = m.rank <= 100;
+    if (m.rank === 101) {
+      html += `<tr class="cutoff-row"><td colspan="5"><div class="cutoff-inner">
+        <div class="cutoff-line-top"></div>
+        <span>Best 100 cutoff — addresses below earn no payout this round</span>
+        <div class="cutoff-line-bot"></div>
+      </div></td></tr>`;
+    }
+    const rnk = m.rank === 1 ? '🥇' : m.rank === 2 ? '🥈' : m.rank === 3 ? '🥉' : m.rank;
+    const payBtc = (m.btc != null ? m.btc : (inTop ? 0.0275 : 0)).toFixed(4);
+    const payUsd = inTop ? ` <span class="usd-val" data-btc="${m.btc || 0.0275}"></span>` : '';
+    html += `<tr${inTop?'':' class="out-row"'}>
+      <td class="rnk${m.rank<=3?' pod':''}">${rnk}</td>
+      <td class="addr-cell">${m.address}</td>
+      <td class="share-cell col-bs">${fmtDiff(m.bestshare)}</td>
+      <td class="pay-cell ${inTop?'in':'out'} col-pay">${payBtc} BTC${payUsd}</td>
+      <td>${inTop?'<span class="pill pill-in">IN BEST 100</span>':'<span class="pill pill-out">OUT</span>'}</td>
+    </tr>`;
+  }
+
+  if (!html) html = '<tr><td colspan="5" style="text-align:center;color:var(--muted);padding:2rem;">No miners yet this round.</td></tr>';
+  if (lb) lb.innerHTML = html;
+}
+
+// ── Section nav ────────────────────────────────────────────
+const VALID_SECTIONS = ['home','connect','mystats','best100','blocks','strategy','disclaimer','faq'];
+
+function switchSection(id) {
+  if (!VALID_SECTIONS.includes(id)) id = 'home';
+  document.querySelectorAll('.nav-btn').forEach(b => b.classList.toggle('active', b.dataset.section === id));
+  document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+  const sec = document.getElementById(id);
+  if (sec) sec.classList.add('active');
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+  const addrVal = document.getElementById('addr-input')?.value.trim();
+  if (id === 'mystats' && addrVal) {
+    history.replaceState(null, '', '?address=' + encodeURIComponent(addrVal) + '#mystats');
+  } else {
+    history.replaceState(null, '', id === 'home' ? '/' : '#' + id);
+  }
+}
+
+document.querySelectorAll('.nav-btn[data-section]').forEach(btn => {
+  btn.addEventListener('click', () => switchSection(btn.dataset.section));
+});
+
+// Load section from URL hash on page load; auto-lookup address from ?address=
+window.addEventListener('load', function() {
+  const params = new URLSearchParams(location.search);
+  const addr   = params.get('address');
+  if (addr) {
+    const input = document.getElementById('addr-input');
+    if (input) input.value = addr;
+    switchSection('mystats');
+    lookupStats();
+  } else {
+    const hash = location.hash.replace('#', '');
+    if (hash && VALID_SECTIONS.includes(hash)) switchSection(hash);
+  }
+});
+
+// ── Config tabs ────────────────────────────────────────────
+document.querySelectorAll('.tab-btn[data-tab]').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const card = btn.closest('.card');
+    card.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    card.querySelectorAll('.config-block, .mockup-ui').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    const tab = card.querySelector('#tab-' + btn.dataset.tab);
+    if (tab) tab.classList.add('active');
+  });
+});
+
+// ── Copy stratum ───────────────────────────────────────────
+function copyStratum() {
+  navigator.clipboard.writeText('stratum+tcp://bitcoin.solo100.org:3333').then(() => {
+    const btn = document.getElementById('copy-stratum-btn');
+    btn.textContent = 'Copied!'; btn.classList.add('copied');
+    setTimeout(() => { btn.textContent = 'Copy'; btn.classList.remove('copied'); }, 2000);
+  });
+}
+function copyStratumHD() {
+  navigator.clipboard.writeText('stratum+tcp://bitcoin.solo100.org:4444').then(() => {
+    const btn = document.getElementById('copy-stratum-hd-btn');
+    btn.textContent = 'Copied!'; btn.classList.add('copied');
+    setTimeout(() => { btn.textContent = 'Copy'; btn.classList.remove('copied'); }, 2000);
+  });
+}
+
+// ── My Stats ───────────────────────────────────────────────
+function timeAgo(ts) {
+  const s = Math.floor(Date.now() / 1000) - ts;
+  if (s < 120) return 'Now';
+  if (s < 3600) return Math.floor(s / 60) + 'm ago';
+  if (s < 86400) return Math.floor(s / 3600) + 'h ago';
+  return Math.floor(s / 86400) + 'd ago';
+}
+
+function msShow(id) { const el = document.getElementById(id); if (el) el.classList.remove('hidden'); }
+function msHide(id) { const el = document.getElementById(id); if (el) el.classList.add('hidden'); }
+function msSet(id, val) { const el = document.getElementById(id); if (el) el.textContent = val; }
+
+async function lookupStats() {
+  const raw  = document.getElementById('addr-input').value.trim();
+  const addr = raw.includes('.') ? raw.split('.')[0] : raw;
+  if (!addr) return;
+  history.replaceState(null, '', '?address=' + encodeURIComponent(addr) + '#mystats');
+
+  ['ms-banner','ms-main-grid','ms-best100-card','ms-raw-card','ms-workers-card'].forEach(msHide);
+
+  let data;
+  try {
+    const res = await fetch('https://bitcoin.solo100.org/users/' + encodeURIComponent(addr));
+    if (res.ok) data = await res.json();
+  } catch(e) { /* network error */ }
+
+  if (!data) {
+    msSet('ms-banner-title', 'Address not found');
+    msSet('ms-banner-msg', 'This address hasn\'t connected to the pool yet.');
+    msShow('ms-banner');
+    return;
+  }
+
+  msSet('ms-hr1m', data.hashrate1m ? fmtShort(hashrateToHps(data.hashrate1m)) : '—');
+  msSet('ms-bestshare-grid', data.bestshare ? fmtDiff(data.bestshare) : '—');
+  msSet('ms-lastseen', data.lastshare ? timeAgo(data.lastshare) : '—');
+  msShow('ms-main-grid');
+
+  const lbEntry = leaderboardMiners.find(m => m.address === addr);
+  const inTop   = lbEntry && lbEntry.rank <= 100;
+  const pill    = document.getElementById('ms-best100-pill');
+  const payout    = document.getElementById('ms-est-payout');
+  const payoutUsd = document.getElementById('ms-est-payout-usd');
+  const btcVal    = inTop ? (lbEntry.btc || 0.0275) : 0;
+  if (pill)       pill.innerHTML        = inTop ? '<span class="pill pill-in">IN BEST 100</span>' : '<span class="pill pill-out">OUT</span>';
+  if (payout)     payout.textContent    = btcVal.toFixed(4);
+  if (payoutUsd)  { payoutUsd.dataset.btc = btcVal; payoutUsd.textContent = btcVal > 0 ? toUSD(btcVal) : ''; }
+  const rankRow   = document.getElementById('ms-rank-row');
+  const rankEl    = document.getElementById('ms-rank');
+  const cutoffRow = document.getElementById('ms-cutoff-row');
+  const cutoffEl  = document.getElementById('ms-cutoff-share');
+  if (rankRow) rankRow.style.display = inTop ? '' : 'none';
+  if (rankEl && inTop) rankEl.textContent = '#' + lbEntry.rank;
+  const cutoffMiner = leaderboardMiners.find(m => m.rank === 100);
+  if (cutoffRow) cutoffRow.style.display = (!inTop && cutoffMiner) ? '' : 'none';
+  if (cutoffEl && cutoffMiner) cutoffEl.textContent = fmtDiff(cutoffMiner.bestshare);
+  msShow('ms-best100-card');
+
+  const curlUrl = 'https://bitcoin.solo100.org/users/' + addr;
+  document.getElementById('ms-curl').textContent = 'curl ' + curlUrl;
+  document.getElementById('ms-raw').textContent = JSON.stringify(data, null, 2);
+  msShow('ms-raw-card');
+
+  if (data.worker && data.worker.length) {
+    const tbody = document.getElementById('ms-workers-tbody');
+    tbody.innerHTML = data.worker.map(w => {
+      const name = w.workername.startsWith(addr + '.') ? w.workername.slice(addr.length + 1) : w.workername;
+      return `<tr>
+        <td class="worker-name">${name || w.workername}</td>
+        <td>${w.hashrate1m ? fmtShort(hashrateToHps(w.hashrate1m)) : '—'}</td>
+        <td>${w.bestshare ? fmtDiff(w.bestshare) : '—'}</td>
+        <td>${w.lastshare ? timeAgo(w.lastshare) : '—'}</td>
+      </tr>`;
+    }).join('');
+    msShow('ms-workers-card');
+  }
+}
+
+// ── Init ───────────────────────────────────────────────────
+const DISCLAIMER_HTML = '<div class="disclaimer"><div class="disclaimer-icon">🚨</div><div><strong>Disclaimer</strong><p>Participation in Bitcoin mining, including through solo100.org, which is still considered in beta testing, involves risks such as market volatility, hardware failure, and changes in network difficulty. solo100.org is in beta and has not yet found a block; there is no assurance of future block discoveries or payouts. Users should exercise caution and consider their financial situation before engaging in mining activities.</p><p style="margin-top:.6rem;">solo100.org shall not be held responsible for any losses, missed payouts, technical failures, or interruptions of service of any kind.</p></div></div>';
+document.querySelectorAll('[data-disclaimer]').forEach(el => { el.outerHTML = DISCLAIMER_HTML; });
+
+initLeaderboard();
+fetchPoolStatus();
+</script>
+
+<script type="text/javascript">
+function googleTranslateElementInit() {
+  new google.translate.TranslateElement({ pageLanguage: 'en' }, 'google_translate_element');
+}
+function fixTranslateFrame() {
+  const frame = document.querySelector('.goog-te-menu-frame');
+  if (!frame || frame.style.visibility === 'hidden') return;
+  const vw = window.innerWidth;
+  const maxW = vw - 16;
+  if (frame.offsetWidth > maxW) frame.style.width = maxW + 'px';
+  const rect = frame.getBoundingClientRect();
+  if (rect.right > vw) frame.style.left = Math.max(8, vw - frame.offsetWidth - 8) + 'px';
+  if (rect.left < 0)   frame.style.left = '8px';
+}
+document.addEventListener('click', function() { setTimeout(fixTranslateFrame, 60); });
+</script>
+<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+</body>
+</html>

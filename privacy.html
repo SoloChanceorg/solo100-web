@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Privacy Policy — solo100.org BTC Mining Pool</title>
+  <meta name="description" content="Privacy Policy for solo100.org, a Bitcoin mining pool by SoloChance.org." />
+  <meta name="robots" content="noindex, follow" />
+  <link rel="canonical" href="https://solo100.org/privacy.html" />
+  <link rel="icon" type="image/png" href="images/logo-no-text-transparent.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@300;400;500;700&family=Ubuntu+Mono&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg:           #0d1117;
+      --bg-card:      rgba(255,255,255,.04);
+      --bg-card-hover:rgba(255,255,255,.07);
+      --border:       rgba(255,255,255,.08);
+      --accent:       #F7931A;
+      --accent-dim:   rgba(247,147,26,.15);
+      --text:         #e6edf3;
+      --muted:        #7d8590;
+      --radius:       12px;
+      --radius-sm:    8px;
+      --blur:         blur(12px);
+      --font:         'Ubuntu', sans-serif;
+      --mono:         'Ubuntu Mono', 'Courier New', monospace;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { background: var(--bg); color: var(--text); font-family: var(--font); font-weight: 300; font-size: 16px; line-height: 1.6; min-height: 100vh; display: flex; flex-direction: column; }
+    a { color: var(--accent); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    strong { font-weight: 500; }
+
+    .header {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(13,17,23,.85);
+      backdrop-filter: var(--blur); -webkit-backdrop-filter: var(--blur);
+      border-bottom: 1px solid var(--border);
+    }
+    .header-inner {
+      max-width: 960px; margin: 0 auto; padding: 0 1.25rem;
+      display: flex; align-items: center; justify-content: space-between;
+      height: 60px;
+    }
+    .logo { display: flex; align-items: center; gap: .5rem; font-size: 1.1rem; font-weight: 500; color: var(--text); text-decoration: none; }
+    .logo:hover { text-decoration: none; }
+    .logo-icon { height: 32px; width: 32px; object-fit: contain; }
+    .accent { color: var(--accent); }
+
+    .container { max-width: 720px; margin: 0 auto; padding: 0 1.25rem; width: 100%; }
+    main.container { flex: 1; padding-top: 2.5rem; padding-bottom: 4rem; }
+
+    .back-link { display: inline-flex; align-items: center; gap: .4rem; color: var(--accent); text-decoration: none; font-size: .9rem; margin-bottom: 2rem; transition: opacity .2s; }
+    .back-link:hover { opacity: .75; text-decoration: none; }
+
+    h1 { font-size: clamp(1.6rem, 4vw, 2.2rem); font-weight: 700; line-height: 1.2; margin-bottom: 1.5rem; }
+
+    .legal-meta { font-size: .8rem; color: var(--muted); margin-bottom: 2rem; }
+
+    .card {
+      background: var(--bg-card); border: 1px solid var(--border);
+      border-radius: var(--radius); padding: 1.75rem 2rem;
+      backdrop-filter: var(--blur); -webkit-backdrop-filter: var(--blur);
+    }
+
+    .legal-body h2 {
+      font-size: 1rem; font-weight: 500; color: var(--text);
+      margin: 2rem 0 .5rem; text-transform: uppercase; letter-spacing: .06em;
+    }
+    .legal-body h2:first-child { margin-top: 0; }
+    .legal-body p, .legal-body li { color: var(--muted); font-size: .9rem; line-height: 1.75; }
+    .legal-body ul, .legal-body ol { padding-left: 1.5rem; margin-top: .4rem; display: flex; flex-direction: column; gap: .3rem; }
+    .legal-body p + p { margin-top: .6rem; }
+    .legal-body code { font-family: var(--mono); font-size: .85rem; color: var(--accent); background: var(--accent-dim); padding: .1rem .4rem; border-radius: 4px; }
+
+    .footer { border-top: 1px solid var(--border); padding: 1.1rem 0; font-size: .85rem; color: var(--muted); }
+    .footer-inner { max-width: 960px; margin: 0 auto; padding: 0 1.25rem; display: flex; align-items: center; justify-content: center; gap: 2rem; flex-wrap: wrap; }
+    .footer a { color: var(--muted); }
+    .footer a:hover { color: var(--accent); }
+  </style>
+</head>
+<body>
+
+<header class="header">
+  <div class="header-inner">
+    <a href="/" class="logo">
+      <img src="images/logo-no-text-transparent.png" alt="solo100.org" class="logo-icon" />
+      <span>solo<span class="accent">100</span>.org</span>
+    </a>
+  </div>
+</header>
+
+<main class="container">
+
+  <a href="/" class="back-link">← Back to solo100.org</a>
+
+  <h1>Privacy <span class="accent">Policy</span></h1>
+
+  <p class="legal-meta">Last updated: May 2026</p>
+
+  <div class="card legal-body">
+
+    <h2>1. Overview</h2>
+    <p>solo100.org is designed to collect as little data as possible. We do not require registration, email addresses, or any personal identification. Your Bitcoin address is your identity on the pool — nothing more.</p>
+
+    <h2>2. Data Collected by the Pool Server</h2>
+    <p>When your miner connects to <code>bitcoin.solo100.org:3333</code>, the pool server logs the following:</p>
+    <ul>
+      <li><strong>Your Bitcoin address</strong> — used as your username to attribute shares and send payouts.</li>
+      <li><strong>Worker name</strong> — the optional suffix after your address (e.g. <code>.worker1</code>), used to distinguish multiple devices.</li>
+      <li><strong>Your IP address</strong> — logged by the pool server for connection management and abuse prevention.</li>
+      <li><strong>Share submissions</strong> — timestamps and difficulty of shares submitted by your miner.</li>
+    </ul>
+    <p>This data is stored on the pool server located in Germany. It is not sold, shared, or disclosed to any third party, except where required by law.</p>
+
+    <h2>3. Data Collected by This Website</h2>
+    <p>This website is a static site hosted on GitHub Pages. It does not use cookies, tracking pixels, analytics scripts, or any form of user tracking.</p>
+    <p>When you use the My Stats lookup, your Bitcoin address is sent directly from your browser to the pool API. It is not stored by the website.</p>
+
+    <h2>4. Third-Party Services</h2>
+    <p>This website makes requests to the following third-party services:</p>
+    <ul>
+      <li><strong>Google Fonts</strong> — to load the Ubuntu and Ubuntu Mono typefaces. Google may log your IP address when fonts are fetched.</li>
+      <li><strong>SoloChance.org API</strong> — to display the live BTC price and pool statistics. No personal data is sent; only standard API requests are made from your browser.</li>
+    </ul>
+    <p>These services have their own privacy policies. solo100.org has no control over the data they collect.</p>
+
+    <h2>5. GitHub Pages</h2>
+    <p>This website is hosted on GitHub Pages. GitHub may collect server logs including IP addresses as part of their standard infrastructure. See <a href="https://docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement" target="_blank" rel="noopener">GitHub's Privacy Statement</a> for details.</p>
+
+    <h2>6. Bitcoin Address and Blockchain Transparency</h2>
+    <p>Bitcoin is a public blockchain. Any Bitcoin address you use on the pool — and all transactions to and from it — are permanently visible on the public blockchain. This is a fundamental property of Bitcoin, not specific to this pool. We have no ability to make blockchain transactions private.</p>
+
+    <h2>7. Data Retention</h2>
+    <p>Share and connection data is retained on the pool server for operational purposes. We do not have a fixed retention schedule during the beta period. If you would like your data removed, contact us via <a href="https://solochance.org" target="_blank" rel="noopener">SoloChance.org</a> and we will make reasonable efforts to accommodate your request.</p>
+
+    <h2>8. Children</h2>
+    <p>This service is not directed at children under the age of 18. We do not knowingly collect data from minors.</p>
+
+    <h2>9. Changes to This Policy</h2>
+    <p>We may update this Privacy Policy from time to time. The date at the top of this page reflects the most recent revision. Continued use of the pool after changes are posted constitutes acceptance of the updated policy.</p>
+
+    <h2>10. Contact</h2>
+    <p>For privacy-related questions or data removal requests, contact us via <a href="https://solochance.org" target="_blank" rel="noopener">SoloChance.org</a>.</p>
+
+  </div>
+
+</main>
+
+<footer class="footer">
+  <div class="footer-inner">
+    <span>Built in 🇪🇪 Estonia · Hosted in 🇩🇪 Germany</span>
+    <span>© solo100.org · a <a href="https://solochance.org" target="_blank" rel="noopener">SoloChance.org</a> project</span>
+    <span><a href="/terms.html">Terms</a> · <a href="/privacy.html">Privacy</a></span>
+  </div>
+</footer>
+
+</body>
+</html>
