@@ -1384,6 +1384,15 @@ function fmtShort(n) {
   if (n >= 1e3)  return (n / 1e3).toFixed(2)  + ' K';
   return n.toString();
 }
+function fmtHashrate(n) {
+  if (n >= 1e18) return (n / 1e18).toFixed(2) + ' EH/s';
+  if (n >= 1e15) return (n / 1e15).toFixed(2) + ' PH/s';
+  if (n >= 1e12) return (n / 1e12).toFixed(2) + ' TH/s';
+  if (n >= 1e9)  return (n / 1e9).toFixed(2)  + ' GH/s';
+  if (n >= 1e6)  return (n / 1e6).toFixed(2)  + ' MH/s';
+  if (n >= 1e3)  return (n / 1e3).toFixed(2)  + ' KH/s';
+  return n.toFixed(2) + ' H/s';
+}
 
 function hashrateToHps(str) {
   if (str == null) return 0;
@@ -1459,7 +1468,7 @@ async function fetchPoolStatus() {
   if (info)   sSet('s-miners', info.Users);
   if (info)   sSet('s-uptime', formatUptime(info.runtime));
   if (hrates) {
-    sSet('s-hr', fmtShort(hashrateToHps(hrates.hashrate1m)));
+    sSet('s-hr', fmtHashrate(hashrateToHps(hrates.hashrate1m)));
     loadPoolChances(hrates.hashrate1m);
   }
   if (stats) {
@@ -1659,7 +1668,7 @@ async function lookupStats() {
     return;
   }
 
-  msSet('ms-hr1m', data.hashrate1m ? fmtShort(hashrateToHps(data.hashrate1m)) : '—');
+  msSet('ms-hr1m', data.hashrate1m ? fmtHashrate(hashrateToHps(data.hashrate1m)) : '—');
   msSet('ms-bestshare-grid', data.bestshare ? fmtDiff(data.bestshare) : '—');
   msSet('ms-lastseen', data.lastshare ? timeAgo(data.lastshare) : '—');
   msShow('ms-main-grid');
@@ -1695,7 +1704,7 @@ async function lookupStats() {
       const name = w.workername.startsWith(addr + '.') ? w.workername.slice(addr.length + 1) : w.workername;
       return `<tr>
         <td class="worker-name">${name || w.workername}</td>
-        <td>${w.hashrate1m ? fmtShort(hashrateToHps(w.hashrate1m)) : '—'}</td>
+        <td>${w.hashrate1m ? fmtHashrate(hashrateToHps(w.hashrate1m)) : '—'}</td>
         <td>${w.bestshare ? fmtDiff(w.bestshare) : '—'}</td>
         <td>${w.lastshare ? timeAgo(w.lastshare) : '—'}</td>
       </tr>`;
