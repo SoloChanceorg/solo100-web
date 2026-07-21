@@ -53,6 +53,31 @@
       },
       {
         "@type": "Question",
+        "name": "What is a Bitcoin mining pool?",
+        "acceptedAnswer": { "@type": "Answer", "text": "A group of miners who combine their hashing power instead of each one independently competing solo against the entire Bitcoin network for the block subsidy. Pools reward miners for submitted shares (partial-difficulty proofs of work) rather than making everyone wait for an outright win, smoothing out the huge variance of solo mining." }
+      },
+      {
+        "@type": "Question",
+        "name": "What is a proportional Bitcoin mining pool?",
+        "acceptedAnswer": { "@type": "Answer", "text": "The most common pool model. Every miner submits shares during a round, and when the pool finds a block, the reward is split among that round's participants in proportion to the shares they submitted — more hashrate, bigger slice." }
+      },
+      {
+        "@type": "Question",
+        "name": "What is a solo Bitcoin mining pool?",
+        "acceptedAnswer": { "@type": "Answer", "text": "The opposite extreme of a proportional pool. Whoever personally finds a block keeps the entire reward, minus a small pool fee — nothing until then. High variance, high reward, run on infrastructure hosted by the pool operator." }
+      },
+      {
+        "@type": "Question",
+        "name": "What is a \"parasite pool\"?",
+        "acceptedAnswer": { "@type": "Answer", "text": "A hybrid: structurally a regular proportional pool, but with one large finder bonus bolted on top — for example, an extra 1 BTC paid directly to whoever happens to find the block, on top of everyone's normal proportional share. It's a proportional pool wearing a solo-mining costume." }
+      },
+      {
+        "@type": "Question",
+        "name": "How is solo100.org different from proportional, solo, and parasite pools?",
+        "acceptedAnswer": { "@type": "Answer", "text": "solo100.org is none of the above — it ranks miners purely by share quality, not accumulated work. The top 100 addresses by best share split 88% of the block reward equally, paid directly in the block's coinbase transaction under unmodified Bitcoin consensus rules, with no pool operator ever touching or custodying a miner's coins. That combination — a ranked, resettable, share-quality leaderboard paid trustlessly by the Bitcoin protocol itself — is why solo100.org calls itself the world's first Bitcoin mining meta-game." }
+      },
+      {
+        "@type": "Question",
         "name": "How is share quality measured?",
         "acceptedAnswer": { "@type": "Answer", "text": "Share quality is measured by difficulty — how close the share's hash is to satisfying the full Bitcoin network difficulty. Each miner is ranked by their single best share this round. Higher hashrate gives a statistically better chance of producing a high-quality share." }
       },
@@ -164,9 +189,9 @@
       border-bottom: 1px solid var(--border);
     }
     .header-inner {
-      max-width: 960px; margin: 0 auto; padding: 0 1.25rem;
+      max-width: 960px; margin: 0 auto; padding: .5rem 1.25rem;
       display: flex; align-items: center; justify-content: space-between;
-      height: 60px; gap: 1rem;
+      flex-wrap: wrap; min-height: 60px; gap: .5rem 1rem;
     }
     .logo {
       display: flex; align-items: center; gap: .5rem;
@@ -656,7 +681,7 @@
     /* ── RESPONSIVE ── */
     @media (max-width: 600px) {
       .card-grid, .card-grid.two, .card-grid.three, .card-grid.three-col { grid-template-columns: 1fr; }
-      .header-inner { flex-wrap: wrap; height: auto; padding: .6rem 1.25rem; }
+      .header-inner { padding: .6rem 1.25rem; }
       .hero-inner { flex-direction: column; align-items: flex-start; gap: 1rem; }
       .hero-logo { width: 72px; height: 72px; }
       .hero h1 { font-size: 1.5rem; }
@@ -680,6 +705,7 @@
     </a>
     <nav class="nav">
       <button class="nav-btn active" data-section="home">Home</button>
+      <button class="nav-btn" data-section="whatis">What is solo100.org?</button>
       <button class="nav-btn" data-section="connect">Connect</button>
       <button class="nav-btn" data-section="mystats">My Stats</button>
       <button class="nav-btn" data-section="best100">Best 100</button>
@@ -704,6 +730,7 @@
         <img src="images/logo-no-text-transparent.png" alt="solo100.org logo" class="hero-logo" />
         <div>
           <p style="font-size:1.25rem;font-weight:500;color:var(--text);line-height:1.6;margin-bottom:1.5rem;">⚠️ This is <strong>not</strong> a regular solo or proportional pool. Read <a href="#" onclick="document.querySelector('[data-section=disclaimer]').click();return false;" style="color:inherit;text-decoration:underline;">Disclaimer</a> carefully before you point your miner here — the payout model is fundamentally different and <u>rewards are not guaranteed</u>.</p>
+          <p style="font-size:.95rem;color:var(--muted);margin-bottom:1.5rem;"><a href="#" onclick="switchSection('whatis');return false;">Read why solo100.org is first of its kind →</a></p>
           <div class="byline">
             <span>By the developer of <a href="https://solochance.org" target="_blank" rel="noopener">SoloChance.org</a></span>
           </div>
@@ -860,6 +887,58 @@
         <code class="connect-value">x</code>
       </div>
       <p class="tip-note">💡 <strong>It is statistically better to give each device its own Bitcoin address</strong> — not just a different worker name. Every unique address competes as an independent entry in Best 100, giving each device its own shot at qualifying. <a href="#" onclick="switchSection('strategy');return false;">See Strategies →</a></p>
+    </div>
+
+    <div data-disclaimer></div>
+
+  </section>
+
+  <!-- ══════════════════════════════════════════════════════════
+       WHAT IS SOLO100.ORG
+  ══════════════════════════════════════════════════════════ -->
+  <section id="whatis" class="section">
+
+    <h2 class="section-title" style="margin-top:.5rem">Explaining why solo100.org is first of its kind</h2>
+
+    <p style="font-size:1.3rem;font-weight:700;line-height:1.55;color:var(--text);margin-bottom:2rem;">
+      Long story short: <span class="s100">solo<span class="accent">100</span>.org</span> is the
+      <span class="accent" style="text-shadow:0 0 8px rgba(247,147,26,.6),0 0 20px rgba(247,147,26,.3);">world's first Bitcoin mining meta-game</span>
+      — or, if you prefer, the <span class="accent" style="text-shadow:0 0 8px rgba(247,147,26,.6),0 0 20px rgba(247,147,26,.3);">world's first Stratum game</span>.
+    </p>
+
+    <div style="display:flex;flex-direction:column;gap:.75rem;">
+
+      <div class="card">
+        <div class="info-title">⛏️ &nbsp;What is a Bitcoin mining pool?</div>
+        <div class="info-desc">A group of miners who combine their hashing power instead of each one independently competing solo against the entire Bitcoin network for the block subsidy. Solo mining variance is enormous — a small miner could statistically wait years, even centuries, for a lucky block. Pools smooth this out by rewarding miners for submitted <strong>shares</strong> (partial-difficulty proofs of work) rather than making everyone wait for an outright win.</div>
+      </div>
+
+      <div class="card">
+        <div class="info-title">📊 &nbsp;What is a proportional pool?</div>
+        <div class="info-desc">The most common pool model. Every miner submits shares during a round. When the pool finds a block, the reward is split among all of that round's participants in proportion to the shares they submitted — more hashrate, bigger slice. It heavily smooths out variance: you get paid a little, often, roughly proportional to the work you actually contributed.</div>
+      </div>
+
+      <div class="card">
+        <div class="info-title">🎯 &nbsp;What is a solo pool?</div>
+        <div class="info-desc">The opposite extreme. Whoever personally finds a block keeps the entire reward (minus a small pool fee) — nothing until then. High variance, high reward: it's exactly like mining alone, except the pool operator runs the stratum server, block template, and node for you. A modest solo miner may statistically wait months or years between blocks.</div>
+      </div>
+
+      <div class="card">
+        <div class="info-title">🦠 &nbsp;What is a "parasite pool"?</div>
+        <div class="info-desc">A hybrid: structurally a regular proportional pool, but with one large <strong>finder bonus</strong> bolted on top — for example, an extra 1 BTC paid directly to whoever happens to find the block, on top of everyone's normal proportional share. It's built to attract lottery-minded miners chasing the bonus, while the pool still runs on ordinary proportional plumbing underneath. It's a proportional pool wearing a solo-mining costume.</div>
+      </div>
+
+      <div class="card" style="background:var(--accent-dim);border:1px solid rgba(247,147,26,.35);">
+        <div class="info-title" style="font-size:1.05rem;">🎮 &nbsp;Why solo100.org is genuinely an invention</div>
+        <div class="info-desc" style="color:var(--text);font-size:.92rem;line-height:1.75;">
+          solo100.org is none of the above. It isn't proportional — most participants get nothing if the round closes without them making Best 100. It isn't classic solo — 100 different addresses split most of the reward, not just the finder. And it isn't a parasite pool — there is no underlying proportional distribution at all; ranking is purely by share quality, not accumulated work.
+          <br><br>
+          The moment your address submits a share good enough to sit inside the current Best 100, you hold a live claim on an equal <strong style="color:var(--accent)">1/100th</strong> slice of 88% of whatever block gets found next — real Bitcoin, under real, unmodified Bitcoin consensus rules. That slice isn't a fixed number: the block reward itself is the 3.125 BTC subsidy <em>plus</em> whatever transaction fees the finder's block happens to include, so a heavier, fee-rich block means a bigger payout for everyone in Best 100. Nobody promises it to you and nobody custodies it. The reward is written directly into the coinbase transaction of the block itself, address by address, the instant it's mined — the same protocol-level mechanism that has paid every block finder in Bitcoin's history, just now split 100 ways instead of one. solo100.org, the operator, never touches a single satoshi belonging to a miner; <strong>Bitcoin's own protocol is the payout mechanism.</strong>
+          <br><br>
+          That's the invention: turning the ordinary mechanics of Stratum pool mining — shares, difficulty, hashrate — into ranked, competitive slots on a real, live leaderboard, where the prize is an unmodified Bitcoin block reward paid trustlessly by the chain itself. It's mining, gamified: the "game" still does real security work for the Bitcoin network, and the "win condition" still pays out in real BTC, coinbase-native, no IOUs, no custodian. As far as we know, no pool has ever combined a ranked, resettable, share-quality leaderboard with direct coinbase-output payouts to 100 independent winners per block — which makes solo100.org the first Bitcoin mining meta-game.
+        </div>
+      </div>
+
     </div>
 
     <div data-disclaimer></div>
@@ -1570,7 +1649,7 @@ async function initLeaderboard() {
 }
 
 // ── Section nav ────────────────────────────────────────────
-const VALID_SECTIONS = ['home','connect','mystats','best100','blocks','strategy','disclaimer','faq'];
+const VALID_SECTIONS = ['home','whatis','connect','mystats','best100','blocks','strategy','disclaimer','faq'];
 
 function switchSection(id) {
   if (!VALID_SECTIONS.includes(id)) id = 'home';
