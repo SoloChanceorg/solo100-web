@@ -74,7 +74,7 @@
       {
         "@type": "Question",
         "name": "How is solo100.org different from proportional, solo, and parasite pools?",
-        "acceptedAnswer": { "@type": "Answer", "text": "solo100.org is none of the above — it ranks miners purely by share quality, not accumulated work. The top 100 addresses by best share split 88% of the block reward equally, paid directly in the block's coinbase transaction under unmodified Bitcoin consensus rules, with no pool operator ever touching or custodying a miner's coins. That combination — a ranked, resettable, share-quality leaderboard paid trustlessly by the Bitcoin protocol itself — is why solo100.org calls itself the world's first Bitcoin mining meta-game." }
+        "acceptedAnswer": { "@type": "Answer", "text": "solo100.org is none of proportional, solo, or parasite — it ranks miners purely by share quality, not accumulated work, not a single winner-take-all roll, and not a proportional split with a bonus bolted on top. The top 100 addresses by best share split 88% of the block reward equally, paid directly in the block's coinbase transaction under unmodified Bitcoin consensus rules, with no pool operator ever touching or custodying a miner's coins. That combination — a ranked, resettable, share-quality leaderboard paid trustlessly by the Bitcoin protocol itself — is why solo100.org calls itself the world's first Bitcoin mining meta-game." }
       },
       {
         "@type": "Question",
@@ -609,6 +609,59 @@
     .workers-table tr:last-child td { border-bottom: none; }
     .workers-table td.worker-name { color: var(--accent); max-width: 220px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 
+    /* ── ODDS CHART ── */
+    .odds-controls { display: flex; gap: 1.25rem; flex-wrap: wrap; margin-bottom: 1.1rem; }
+    .odds-controls label { display: flex; flex-direction: column; gap: .3rem; font-size: .68rem; text-transform: uppercase; letter-spacing: .06em; color: var(--muted); }
+    .odds-controls select {
+      background: rgba(0,0,0,.35); border: 1px solid var(--border); color: var(--text);
+      font-family: var(--font); font-size: .85rem; padding: .45rem .7rem; border-radius: var(--radius-sm);
+      outline: none; cursor: pointer;
+    }
+    .odds-controls select:focus { border-color: var(--accent); }
+
+    .odds-legend { display: flex; align-items: center; gap: 1.1rem; font-size: .78rem; color: var(--muted); margin-bottom: 1rem; flex-wrap: wrap; }
+    .odds-legend-item { display: inline-flex; align-items: center; gap: .4rem; }
+    .odds-legend-dot { width: 10px; height: 10px; border-radius: 50%; display: inline-block; flex-shrink: 0; }
+    .odds-legend-dot.accent { background: var(--accent); }
+    .odds-legend-dot.muted  { background: rgba(255,255,255,.35); }
+
+    .odds-headers { display: grid; grid-template-columns: 1fr 170px 1fr; gap: .5rem; margin-bottom: .5rem; }
+    .odds-headers span { font-size: .68rem; text-transform: uppercase; letter-spacing: .06em; color: var(--muted); }
+    .odds-headers .h-left  { text-align: right; }
+    .odds-headers .h-right { text-align: left; }
+
+    .odds-group { border-radius: 10px; padding: .6rem .75rem .75rem; margin-bottom: .5rem; }
+    .odds-group:last-child { margin-bottom: 0; }
+    .odds-group.a { background: rgba(255,255,255,.025); }
+    .odds-group.b { background: rgba(255,255,255,.055); }
+
+    .odds-group-title { font-size: .7rem; text-transform: uppercase; letter-spacing: .07em; color: var(--muted); margin: 0 0 .35rem; }
+    .odds-group-title.accent { color: var(--accent); }
+
+    .odds-row { display: grid; grid-template-columns: 1fr 170px 1fr; align-items: center; gap: .5rem; min-height: 38px; }
+    .odds-group .odds-row + .odds-row { margin-top: .85rem; padding-top: .85rem; border-top: 1px solid var(--border); }
+    .odds-chance-cell, .odds-payout-cell { display: flex; align-items: center; gap: .5rem; min-width: 0; }
+    .odds-chance-cell { justify-content: flex-end; }
+    .odds-payout-cell { justify-content: flex-start; }
+    .odds-bar-wrap-left  { flex: 1; display: flex; justify-content: flex-end; min-width: 0; }
+    .odds-bar-wrap-right { flex: 1; display: flex; justify-content: flex-start; min-width: 0; }
+
+    .odds-bar { height: 14px; max-width: 100%; }
+    .odds-bar.left  { border-radius: 7px 0 0 7px; }
+    .odds-bar.right { border-radius: 0 7px 7px 0; }
+    .odds-bar.muted  { background: rgba(255,255,255,.18); border: 1px solid rgba(255,255,255,.28); }
+    .odds-bar.accent { background: var(--accent); box-shadow: 0 0 10px rgba(247,147,26,.35); }
+
+    .odds-value { font-family: var(--mono); font-size: .72rem; color: var(--text); white-space: nowrap; flex-shrink: 0; }
+    .odds-value.accent { color: var(--accent); font-weight: 500; }
+
+    .odds-label-cell { text-align: center; padding: 0 .6rem; border-left: 1px solid var(--border); border-right: 1px solid var(--border); }
+    .odds-label-cell .t1 { font-size: .8rem; color: var(--text); font-weight: 500; line-height: 1.25; }
+    .odds-label-cell .t2 { font-size: .7rem; color: var(--muted); line-height: 1.25; margin-top: .1rem; }
+    .odds-label-cell.glow { border-left-color: rgba(247,147,26,.4); border-right-color: rgba(247,147,26,.4); }
+    .odds-label-cell.glow .t1 { color: var(--accent); text-shadow: 0 0 8px rgba(247,147,26,.6), 0 0 20px rgba(247,147,26,.3); }
+    .odds-label-cell.glow .t2 { color: var(--accent); opacity: .85; text-shadow: 0 0 6px rgba(247,147,26,.4); }
+
     /* ── FOOTER ── */
     .footer { border-top: 1px solid var(--border); padding: 1.1rem 0; font-size: .85rem; color: var(--muted); }
     .footer-inner { display: flex; align-items: center; justify-content: center; gap: 2rem; flex-wrap: wrap; }
@@ -691,6 +744,12 @@
       .connect-label { min-width: unset; }
 
       .footer-inner { flex-direction: column; align-items: center; }
+
+      .odds-headers, .odds-row { grid-template-columns: 1fr 108px 1fr; gap: .35rem; }
+      .odds-value { font-size: .64rem; }
+      .odds-label-cell { padding: 0 .35rem; }
+      .odds-label-cell .t1 { font-size: .72rem; }
+      .odds-label-cell .t2 { font-size: .64rem; }
     }
   </style>
 </head>
@@ -929,9 +988,158 @@
       </div>
 
       <div class="card" style="background:var(--accent-dim);border:1px solid rgba(247,147,26,.35);">
+        <div class="info-title" style="font-size:1.05rem;">🎯 &nbsp;Why solo100.org is actually needed</div>
+        <div class="info-desc" style="color:var(--text);font-size:.92rem;line-height:1.75;">
+          Bitaxes and other low-hashrate devices — and even small farms — are barely useful in a proportional pool. Spread across the entire network's hashrate, they earn a slow trickle of a few satoshis at a time, round after round, forever. Pure solo mining is the opposite problem: an absolute lottery with vanishingly small odds — see the exact numbers below.
+          <br><br>
+          solo100.org sits in between, as the ultimate game of chance. You don't need extreme, once-in-a-lifetime luck to win a <strong style="color:var(--accent)">meaningful</strong> amount of Bitcoin — just enough luck to land one good share inside Best 100. That's a realistic, attainable target for a small miner in a way that "find an entire block alone" never is, while still paying out a real, life-changing-scale amount instead of dust.
+        </div>
+      </div>
+
+      <div class="card" style="padding:1.5rem;">
+        <div id="odds-chart-title" class="info-title" style="font-size:1.05rem;">🎲 &nbsp;Odds vs. reward — 1.20 TH/s Bitaxe Gamma, per day</div>
+        <div class="info-desc" style="margin-bottom:1rem;">Same hardware, four pool models. Left side: chance of landing any payout <span id="odds-period-word">today</span>. Right side: size of that payout if it lands. Both scales are logarithmic — each step is 10× the last, because the numbers here span from a handful of satoshis to an entire block.</div>
+
+        <div class="odds-controls">
+          <label>Device
+            <select id="odds-device">
+              <option value="1.2" data-name="Bitaxe Gamma" data-label="1.20 TH/s" selected>1.20 TH/s — Bitaxe Gamma</option>
+              <option value="4.8" data-name="NerdMiner NerdQaxe++" data-label="4.80 TH/s">4.80 TH/s — NerdMiner NerdQaxe++</option>
+              <option value="90" data-name="Avalon Q" data-label="90 TH/s">90 TH/s — Avalon Q</option>
+            </select>
+          </label>
+          <label>Period
+            <select id="odds-time">
+              <option value="day" selected>Day</option>
+              <option value="week">Week</option>
+              <option value="month">Month</option>
+            </select>
+          </label>
+        </div>
+
+        <div class="odds-legend">
+          <span class="odds-legend-item"><span class="odds-legend-dot accent"></span>solo100.org</span>
+          <span class="odds-legend-item"><span class="odds-legend-dot muted"></span>other pool models</span>
+        </div>
+
+        <div class="odds-headers">
+          <span id="odds-header-left" class="h-left">← Chance of a payout, per day</span>
+          <span></span>
+          <span class="h-right">Payout, if it lands →</span>
+        </div>
+
+        <div class="odds-group a">
+          <div class="odds-group-title">Proportional pool</div>
+          <div class="odds-row">
+            <div class="odds-chance-cell">
+              <span class="odds-value">~100%</span>
+              <div class="odds-bar-wrap-left"><div class="odds-bar left muted" style="width:97%" title="Practically certain — a slice of nearly every block the pool finds"></div></div>
+            </div>
+            <div class="odds-label-cell"><div class="t1">Steady but not meaningful</div><div class="t2">a small slice of every block found</div></div>
+            <div class="odds-payout-cell">
+              <div class="odds-bar-wrap-right"><div class="odds-bar right muted odds-steady-payout-bar" style="width:4%" title="≈68 sats (0.00000068 BTC) per day — expected value at 1 in 4,566,405"></div></div>
+              <span class="odds-value odds-steady-payout-value">~68 sats</span>
+              <span class="usd-val odds-steady-payout-usd"></span>
+            </div>
+          </div>
+        </div>
+
+        <div class="odds-group b">
+          <div class="odds-group-title">Solo pool</div>
+          <div class="odds-row">
+            <div class="odds-chance-cell">
+              <span class="odds-value odds-raw-chance-value">1 in 4,566,405</span>
+              <div class="odds-bar-wrap-left"><div class="odds-bar left muted odds-raw-chance-bar" style="width:4%" title="1 in 4,566,405 chance per day at 1.20 TH/s — live from api.solochance.org"></div></div>
+            </div>
+            <div class="odds-label-cell"><div class="t1">Entire Block</div><div class="t2">great reward but once in a lifetime chance</div></div>
+            <div class="odds-payout-cell">
+              <div class="odds-bar-wrap-right"><div class="odds-bar right muted" style="width:97%" title="3.125 BTC — the full block subsidy"></div></div>
+              <span class="odds-value">3.125 BTC</span>
+              <span class="usd-val" data-btc="3.125"></span>
+            </div>
+          </div>
+        </div>
+
+        <div class="odds-group a">
+          <div class="odds-group-title">Parasite pool</div>
+          <div class="odds-row">
+            <div class="odds-chance-cell">
+              <span class="odds-value">~100%</span>
+              <div class="odds-bar-wrap-left"><div class="odds-bar left muted" style="width:97%" title="Practically certain — the proportional base pays out on nearly every block the pool finds"></div></div>
+            </div>
+            <div class="odds-label-cell"><div class="t1">Steady but not meaningful</div><div class="t2">a small slice of every block found</div></div>
+            <div class="odds-payout-cell">
+              <div class="odds-bar-wrap-right"><div class="odds-bar right muted odds-parasite-steady-payout-bar" style="width:4%" title="Expected value on the reduced proportional pot, after the 1 BTC bonus is carved out"></div></div>
+              <span class="odds-value odds-parasite-steady-payout-value">~47 sats</span>
+              <span class="usd-val odds-parasite-steady-payout-usd"></span>
+            </div>
+          </div>
+          <div class="odds-row">
+            <div class="odds-chance-cell">
+              <span class="odds-value odds-raw-chance-value">1 in 4,566,405</span>
+              <div class="odds-bar-wrap-left"><div class="odds-bar left muted odds-raw-chance-bar" style="width:4%" title="Same odds as finding a block solo"></div></div>
+            </div>
+            <div class="odds-label-cell"><div class="t1">Finder bonus</div><div class="t2">great reward but once in a lifetime chance</div></div>
+            <div class="odds-payout-cell">
+              <div class="odds-bar-wrap-right"><div class="odds-bar right muted" style="width:93%" title="Extra 1 BTC bonus, on top of the base"></div></div>
+              <span class="odds-value">1 BTC</span>
+              <span class="usd-val" data-btc="1"></span>
+            </div>
+          </div>
+        </div>
+
+        <div class="odds-group b">
+          <div class="odds-group-title accent">solo100.org</div>
+          <div class="odds-row">
+            <div class="odds-chance-cell">
+              <span id="odds-best100-chance-value" class="odds-value accent">≈1 in 45,664</span>
+              <div class="odds-bar-wrap-left"><div id="odds-best100-chance-bar" class="odds-bar left accent" style="width:30%" title="≈1 in 45,664 chance per day of landing a Best 100 slot — 100× the solo block-finding chance"></div></div>
+            </div>
+            <div class="odds-label-cell glow"><div class="t1">Best 100 Slot</div><div class="t2">realistic chance, meaningful reward</div></div>
+            <div class="odds-payout-cell">
+              <div class="odds-bar-wrap-right"><div id="odds-best100-bar" class="odds-bar right accent" style="width:69%" title="An equal 1/100th share of the Best 100 pool — live from the pool leaderboard"></div></div>
+              <span id="odds-best100-payout" class="odds-value accent">0.0275 BTC</span>
+              <span class="usd-val" id="odds-best100-payout-usd"></span>
+            </div>
+          </div>
+          <div class="odds-row">
+            <div class="odds-chance-cell">
+              <span class="odds-value accent odds-raw-chance-value">1 in 4,566,405</span>
+              <div class="odds-bar-wrap-left"><div class="odds-bar left accent odds-raw-chance-bar" style="width:4%" title="Same odds as finding a block solo"></div></div>
+            </div>
+            <div class="odds-label-cell"><div class="t1">Finder bonus</div><div class="t2">great reward but once in a lifetime chance</div></div>
+            <div class="odds-payout-cell">
+              <div class="odds-bar-wrap-right"><div id="odds-finder-bar" class="odds-bar right accent" style="width:85%" title="Finder bonus — live from the pool leaderboard"></div></div>
+              <span id="odds-finder-payout" class="odds-value accent">0.3125 BTC</span>
+              <span class="usd-val" id="odds-finder-payout-usd"></span>
+            </div>
+          </div>
+        </div>
+
+        <p id="odds-footnote" style="font-size:.78rem;color:var(--muted);margin-top:1rem;">Chance per day for a 1.20 TH/s Bitaxe Gamma sourced live from api.solochance.org (network hashrate ≈789 EH/s at time of writing). solo100.org's Best 100 odds are modeled as 100× the solo block-finding chance — one shot per Best 100 slot instead of one shot at the whole block. Actual odds move with network hashrate and pool competition — treat these as illustrative, not guaranteed.</p>
+
+        <details style="margin-top:.75rem;">
+          <summary style="cursor:pointer;color:var(--accent);font-size:.82rem;">View as table</summary>
+          <div style="overflow-x:auto;margin-top:.75rem;">
+            <table class="workers-table">
+              <thead><tr><th>Pool model</th><th>Outcome</th><th id="odds-table-chance-header">Chance / day</th><th>Payout</th></tr></thead>
+              <tbody>
+                <tr><td>Proportional</td><td>Steady but not meaningful</td><td>~100%</td><td><span class="odds-steady-payout-value">~68 sats</span> <span class="usd-val odds-steady-payout-usd"></span></td></tr>
+                <tr><td>Solo</td><td>Entire Block</td><td class="odds-raw-chance-value">1 in 4,566,405</td><td>3.125 BTC <span class="usd-val" data-btc="3.125"></span></td></tr>
+                <tr><td>Parasite</td><td>Steady but not meaningful</td><td>~100%</td><td><span class="odds-parasite-steady-payout-value">~47 sats</span> <span class="usd-val odds-parasite-steady-payout-usd"></span></td></tr>
+                <tr><td>Parasite</td><td>Finder bonus</td><td class="odds-raw-chance-value">1 in 4,566,405</td><td>1 BTC <span class="usd-val" data-btc="1"></span></td></tr>
+                <tr><td>solo100.org</td><td>Best 100 Slot</td><td id="odds-best100-chance-value-table">≈1 in 45,664</td><td><span id="odds-best100-payout-table">0.0275 BTC</span> <span class="usd-val" id="odds-best100-payout-usd-table"></span></td></tr>
+                <tr><td>solo100.org</td><td>Finder bonus</td><td class="odds-raw-chance-value">1 in 4,566,405</td><td><span id="odds-finder-payout-table">0.3125 BTC</span> <span class="usd-val" id="odds-finder-payout-usd-table"></span></td></tr>
+              </tbody>
+            </table>
+          </div>
+        </details>
+      </div>
+
+      <div class="card" style="background:var(--accent-dim);border:1px solid rgba(247,147,26,.35);">
         <div class="info-title" style="font-size:1.05rem;">🎮 &nbsp;Why solo100.org is genuinely an invention</div>
         <div class="info-desc" style="color:var(--text);font-size:.92rem;line-height:1.75;">
-          solo100.org is none of the above. It isn't proportional — most participants get nothing if the round closes without them making Best 100. It isn't classic solo — 100 different addresses split most of the reward, not just the finder. And it isn't a parasite pool — there is no underlying proportional distribution at all; ranking is purely by share quality, not accumulated work.
+          solo100.org is none of proportional, solo, or parasite — it ranks miners purely by share quality, not accumulated work, not a single winner-take-all roll, and not a proportional split with a bonus bolted on top.
           <br><br>
           The moment your address submits a share good enough to sit inside the current Best 100, you hold a live claim on an equal <strong style="color:var(--accent)">1/100th</strong> slice of 88% of whatever block gets found next — real Bitcoin, under real, unmodified Bitcoin consensus rules. That slice isn't a fixed number: the block reward itself is the 3.125 BTC subsidy <em>plus</em> whatever transaction fees the finder's block happens to include, so a heavier, fee-rich block means a bigger payout for everyone in Best 100. Nobody promises it to you and nobody custodies it. The reward is written directly into the coinbase transaction of the block itself, address by address, the instant it's mined — the same protocol-level mechanism that has paid every block finder in Bitcoin's history, just now split 100 ways instead of one. solo100.org, the operator, never touches a single satoshi belonging to a miner; <strong>Bitcoin's own protocol is the payout mechanism.</strong>
           <br><br>
@@ -1556,6 +1764,13 @@ async function fetchPoolStatus() {
   }
 }
 
+// ── Odds vs. reward chart helpers ───────────────────────────
+function oddsPayoutWidth(btc) {
+  const vmin = 0.00000068, vmax = 3.125;
+  const frac = (Math.log10(btc) - Math.log10(vmin)) / (Math.log10(vmax) - Math.log10(vmin));
+  return Math.min(97, Math.max(4, frac * 100));
+}
+
 // ── Leaderboard ────────────────────────────────────────────
 async function initLeaderboard() {
   const lb = document.getElementById('lb');
@@ -1608,6 +1823,34 @@ async function initLeaderboard() {
   const poCount = document.getElementById('po-count');
   if (poCount) poCount.textContent = count || 100;
 
+  // Odds vs. reward chart — reuse the same live finder/Best-100 payout values as the Home summary above.
+  if (count) {
+    const txt = eachBtc.toFixed(4) + ' BTC';
+    ['odds-best100-payout', 'odds-best100-payout-table'].forEach(id => {
+      const el = document.getElementById(id);
+      if (el) el.textContent = txt;
+    });
+    ['odds-best100-payout-usd', 'odds-best100-payout-usd-table'].forEach(id => {
+      const u = document.getElementById(id);
+      if (u) { u.dataset.btc = eachBtc; u.textContent = toUSD(eachBtc); }
+    });
+    const bar = document.getElementById('odds-best100-bar');
+    if (bar && eachBtc > 0) bar.style.width = oddsPayoutWidth(eachBtc) + '%';
+  }
+  if (finder) {
+    const txt = finder.btc.toFixed(4) + ' BTC';
+    ['odds-finder-payout', 'odds-finder-payout-table'].forEach(id => {
+      const el = document.getElementById(id);
+      if (el) el.textContent = txt;
+    });
+    ['odds-finder-payout-usd', 'odds-finder-payout-usd-table'].forEach(id => {
+      const u = document.getElementById(id);
+      if (u) { u.dataset.btc = finder.btc; u.textContent = toUSD(finder.btc); }
+    });
+    const bar = document.getElementById('odds-finder-bar');
+    if (bar && finder.btc > 0) bar.style.width = oddsPayoutWidth(finder.btc) + '%';
+  }
+
   let html = '';
 
   if (finder) {
@@ -1647,6 +1890,105 @@ async function initLeaderboard() {
   if (!html) html = '<tr><td colspan="5" style="text-align:center;color:var(--muted);padding:2rem;">No miners yet this round.</td></tr>';
   if (lb) lb.innerHTML = html;
 }
+
+// ── Odds vs. reward chart (interactive) ─────────────────────
+function oddsChanceWidth(p) {
+  const vmin = 1e-8, vmax = 1;
+  const frac = (Math.log10(p) - Math.log10(vmin)) / (Math.log10(vmax) - Math.log10(vmin));
+  return Math.min(97, Math.max(4, frac * 100));
+}
+function oddsStripChanceSuffix(text) {
+  return (text || '').replace(/\s*chance\s*$/i, '');
+}
+function oddsFmtSteadyPayout(btc) {
+  if (btc < 0.001) return '~' + Math.round(btc * 1e8).toLocaleString() + ' sats';
+  return '~' + btc.toFixed(4) + ' BTC';
+}
+function oddsFmtBest100Chance(rawChance) {
+  const c = Math.min(1, rawChance * 100);
+  if (c >= 0.999) return '~100%';
+  return '≈1 in ' + Math.round(1 / c).toLocaleString();
+}
+
+async function updateOddsChart() {
+  const deviceSel = document.getElementById('odds-device');
+  const timeSel   = document.getElementById('odds-time');
+  if (!deviceSel || !timeSel) return;
+
+  const hashrateTH  = deviceSel.value;
+  const deviceOpt   = deviceSel.options[deviceSel.selectedIndex];
+  const deviceName  = deviceOpt.dataset.name;
+  const deviceLabel = deviceOpt.dataset.label;
+  const timeframe   = timeSel.value;
+  const timeLabel   = timeSel.options[timeSel.selectedIndex].textContent;
+  const periodPhrase = { day: 'today', week: 'this week', month: 'this month' }[timeframe];
+
+  let d;
+  try {
+    const res = await fetch(`https://api.solochance.org/getSoloChanceCalculations?currency=BTC&hashrate=${hashrateTH}&hashrateUnit=TH`);
+    d = await res.json();
+  } catch (e) { return; }
+
+  const chance     = d[timeframe + 'Chance'];
+  const chanceText = oddsStripChanceSuffix(d[timeframe + 'ChanceText']);
+  const blockReward = d.blockReward || 3.125;
+  if (!chance) return;
+
+  const titleEl = document.getElementById('odds-chart-title');
+  if (titleEl) titleEl.textContent = `🎲 Odds vs. reward — ${deviceLabel} ${deviceName}, per ${timeframe}`;
+  const periodWordEl = document.getElementById('odds-period-word');
+  if (periodWordEl) periodWordEl.textContent = periodPhrase;
+  const headerLeftEl = document.getElementById('odds-header-left');
+  if (headerLeftEl) headerLeftEl.textContent = `← Chance of a payout, per ${timeframe}`;
+  const tableHeaderEl = document.getElementById('odds-table-chance-header');
+  if (tableHeaderEl) tableHeaderEl.textContent = `Chance / ${timeLabel}`;
+  const footnoteEl = document.getElementById('odds-footnote');
+  if (footnoteEl) footnoteEl.textContent = `Chance per ${timeframe} for ${deviceLabel} ${deviceName} sourced live from api.solochance.org (network hashrate ${d.networkHashrateText || '—'} at time of writing). solo100.org's Best 100 odds are modeled as 100× the solo block-finding chance — one shot per Best 100 slot instead of one shot at the whole block. Actual odds move with network hashrate and pool competition — treat these as illustrative, not guaranteed.`;
+
+  document.querySelectorAll('.odds-raw-chance-value').forEach(el => { el.textContent = chanceText; });
+  document.querySelectorAll('.odds-raw-chance-bar').forEach(el => {
+    el.style.width = oddsChanceWidth(chance) + '%';
+    el.title = `${chanceText} chance per ${timeframe} at ${deviceLabel} — live from api.solochance.org`;
+  });
+
+  const best100ChanceText = oddsFmtBest100Chance(chance);
+  const best100ChanceWidth = oddsChanceWidth(Math.min(1, chance * 100));
+  ['odds-best100-chance-value', 'odds-best100-chance-value-table'].forEach(id => {
+    const el = document.getElementById(id);
+    if (el) el.textContent = best100ChanceText;
+  });
+  const best100ChanceBar = document.getElementById('odds-best100-chance-bar');
+  if (best100ChanceBar) {
+    best100ChanceBar.style.width = best100ChanceWidth + '%';
+    best100ChanceBar.title = `${best100ChanceText} chance per ${timeframe} of landing a Best 100 slot — 100× the solo block-finding chance`;
+  }
+
+  const steadyBtc = blockReward * chance;
+  const steadyText = oddsFmtSteadyPayout(steadyBtc);
+  document.querySelectorAll('.odds-steady-payout-value').forEach(el => { el.textContent = steadyText; });
+  document.querySelectorAll('.odds-steady-payout-usd').forEach(el => { el.dataset.btc = steadyBtc; el.textContent = toUSD(steadyBtc); });
+  document.querySelectorAll('.odds-steady-payout-bar').forEach(el => {
+    el.style.width = oddsPayoutWidth(steadyBtc) + '%';
+    el.title = `${steadyText} per ${timeframe} — expected value at ${chanceText}`;
+  });
+
+  // Parasite pool carves the 1 BTC finder bonus out of the same block reward, so its
+  // proportional/steady pot is smaller than a plain proportional pool's — never equal to it.
+  const parasiteSteadyBtc = Math.max(0, blockReward - 1) * chance;
+  const parasiteSteadyText = oddsFmtSteadyPayout(parasiteSteadyBtc);
+  document.querySelectorAll('.odds-parasite-steady-payout-value').forEach(el => { el.textContent = parasiteSteadyText; });
+  document.querySelectorAll('.odds-parasite-steady-payout-usd').forEach(el => { el.dataset.btc = parasiteSteadyBtc; el.textContent = toUSD(parasiteSteadyBtc); });
+  document.querySelectorAll('.odds-parasite-steady-payout-bar').forEach(el => {
+    el.style.width = oddsPayoutWidth(parasiteSteadyBtc) + '%';
+    el.title = `${parasiteSteadyText} per ${timeframe} — expected value after the 1 BTC bonus is carved out of the block reward, at ${chanceText}`;
+  });
+
+  updateUsdValues();
+}
+
+document.getElementById('odds-device')?.addEventListener('change', updateOddsChart);
+document.getElementById('odds-time')?.addEventListener('change', updateOddsChart);
+updateOddsChart();
 
 // ── Section nav ────────────────────────────────────────────
 const VALID_SECTIONS = ['home','whatis','connect','mystats','best100','blocks','strategy','disclaimer','faq'];
