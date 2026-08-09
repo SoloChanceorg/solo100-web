@@ -336,6 +336,63 @@
 
     .card-grid.three-col { grid-template-columns: repeat(auto-fill, minmax(240px,1fr)); }
 
+    /* ── POOL CHART ── */
+    .chart-card { margin-bottom: 2rem; }
+    .chart-card:hover { transform: none; box-shadow: none; background: var(--bg-card); }
+    .chart-card.fullscreen {
+      position: fixed; inset: 0; z-index: 500; margin: 0; border-radius: 0;
+      display: flex; flex-direction: column; background: var(--bg);
+      backdrop-filter: none; -webkit-backdrop-filter: none;
+    }
+    .chart-card.fullscreen .chart-wrap { flex: 1 1 auto; height: auto; }
+    body.chart-fullscreen-lock { overflow: hidden; }
+    .chart-header {
+      display: flex; align-items: baseline; justify-content: space-between;
+      flex-wrap: wrap; gap: .5rem; margin-bottom: .75rem;
+    }
+    .chart-title { font-size: .95rem; font-weight: 500; color: var(--text); }
+    .chart-window { font-size: .78rem; font-weight: 400; color: var(--muted); }
+    .chart-legend { display: flex; align-items: center; gap: 1rem; font-size: .78rem; color: var(--muted); }
+    .chart-fullscreen-btn {
+      display: inline-flex; align-items: center; justify-content: center;
+      width: 1.75rem; height: 1.75rem; padding: 0;
+      background: transparent; border: 1px solid var(--border); border-radius: var(--radius-sm);
+      color: var(--muted); cursor: pointer; transition: color .2s, border-color .2s, background .2s;
+    }
+    .chart-fullscreen-btn:hover, .chart-fullscreen-btn.active {
+      color: var(--accent); border-color: var(--accent); background: var(--accent-dim);
+    }
+    .chart-fullscreen-btn .icon-compress { display: none; }
+    .chart-fullscreen-btn.active .icon-expand { display: none; }
+    .chart-fullscreen-btn.active .icon-compress { display: block; }
+    .legend-item { display: inline-flex; align-items: center; gap: .35rem; }
+    .legend-swatch { width: .6rem; height: .6rem; border-radius: 2px; display: inline-block; }
+    .legend-hashrate { background: var(--accent); }
+    .legend-workers  { background: var(--green); }
+    .chart-wrap { position: relative; height: 220px; }
+    .chart-message {
+      position: absolute; inset: 0; display: flex; align-items: center; justify-content: center;
+      color: var(--muted); font-size: .85rem; text-align: center; padding: 0 1rem;
+    }
+    .chart-svg { width: 100%; height: 100%; overflow: visible; cursor: crosshair; }
+    .chart-svg .grid-line   { stroke: var(--border); stroke-width: 1; }
+    .chart-svg .axis-label  { fill: var(--muted); font-size: 9px; font-family: var(--font); }
+    .chart-svg .hashrate-area { fill: var(--accent-dim); stroke-linejoin: round; }
+    .chart-svg .hashrate-line { fill: none; stroke: var(--accent); stroke-width: 2; stroke-linejoin: round; stroke-linecap: round; }
+    .chart-svg .workers-line  { fill: none; stroke: var(--green); stroke-width: 1.5; stroke-dasharray: 4 3; stroke-linejoin: round; stroke-linecap: round; }
+    .chart-svg .crosshair     { stroke: var(--border); stroke-width: 1; }
+    .chart-svg .dot-hashrate  { fill: var(--accent); }
+    .chart-svg .dot-workers   { fill: var(--green); }
+    .chart-tooltip {
+      position: absolute; top: 0; left: 0; pointer-events: none;
+      background: #151b23; border: 1px solid var(--border); border-radius: var(--radius-sm);
+      padding: .5rem .65rem; font-size: .78rem; line-height: 1.5; white-space: nowrap;
+      transform: translate(-50%, -100%); z-index: 5;
+    }
+    .chart-tooltip .tooltip-time     { color: var(--muted); margin-bottom: .15rem; }
+    .chart-tooltip .tooltip-hashrate { color: var(--accent); }
+    .chart-tooltip .tooltip-workers  { color: var(--green); }
+
     /* ── STAT CARDS ── */
     .stat-card { text-align: center; padding: 1.5rem 1rem; }
     .stat-label {
@@ -752,6 +809,9 @@
 
       .footer-inner { flex-direction: column; align-items: center; }
 
+      .chart-wrap { height: 170px; }
+      .chart-fullscreen-btn { display: none; }
+
       .odds-headers, .odds-row { grid-template-columns: 1fr 108px 1fr; gap: .35rem; }
       .odds-value { font-size: .64rem; }
       .odds-label-cell { padding: 0 .35rem; }
@@ -851,6 +911,30 @@
         <p>Stats will appear here once the pool is live. Check back soon.</p>
       </div>
     </div>
+
+    <div class="card chart-card">
+      <div class="chart-header">
+        <div class="chart-title">Hashrate &amp; Workers <span id="chart-window" class="chart-window"></span></div>
+        <div class="chart-legend">
+          <span class="legend-item"><span class="legend-swatch legend-hashrate"></span>Hashrate</span>
+          <span class="legend-item"><span class="legend-swatch legend-workers"></span>Workers</span>
+          <button id="chart-fullscreen-btn" class="chart-fullscreen-btn" type="button" aria-label="Full screen">
+            <svg class="icon-expand" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="15" height="15">
+              <path d="M9 3H5a2 2 0 0 0-2 2v4M15 3h4a2 2 0 0 1 2 2v4M9 21H5a2 2 0 0 1-2-2v-4M15 21h4a2 2 0 0 0 2-2v-4" />
+            </svg>
+            <svg class="icon-compress" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="15" height="15">
+              <path d="M4 9h4a2 2 0 0 0 2-2V3M20 9h-4a2 2 0 0 1-2-2V3M4 15h4a2 2 0 0 1 2 2v4M20 15h-4a2 2 0 0 0-2 2v4" />
+            </svg>
+          </button>
+        </div>
+      </div>
+      <div id="pool-chart-wrap" class="chart-wrap">
+        <div id="pool-chart-message" class="chart-message">Loading chart…</div>
+        <svg id="pool-chart-svg" class="chart-svg hidden" viewBox="0 0 600 220" preserveAspectRatio="none"></svg>
+        <div id="pool-chart-tooltip" class="chart-tooltip hidden"></div>
+      </div>
+    </div>
+
     <div class="card-grid three hidden" id="pool-stats-grid" style="margin-bottom:2rem">
       <div class="card stat-card">
         <div class="stat-label">Pool Hashrate</div>
@@ -1657,6 +1741,9 @@
 </footer>
 
 <script>
+let refreshPoolChartOnShow = () => {};
+let exitChartFullscreen = () => {};
+
 // ── Helpers ────────────────────────────────────────────────
 function fmtDiff(d) {
   if (d >= 1e12) return (d/1e12).toFixed(2) + ' T';
@@ -1779,6 +1866,327 @@ async function fetchPoolStatus() {
     sSet('s-shares', fmtShort(stats.accepted));
   }
 }
+
+// ── Hashrate & Workers chart ──────────────────────────────
+const CHART_URL = 'https://poolstats.solochance.org/bitcoin-solo100.json';
+
+function chartFormatHashrate(hps) {
+  if (hps == null || isNaN(hps)) return '—';
+  if (hps >= 1e18) return (hps / 1e18).toFixed(2) + ' EH/s';
+  if (hps >= 1e15) return (hps / 1e15).toFixed(2) + ' PH/s';
+  if (hps >= 1e12) return (hps / 1e12).toFixed(2) + ' TH/s';
+  if (hps >= 1e9)  return (hps / 1e9).toFixed(2)  + ' GH/s';
+  if (hps >= 1e6)  return (hps / 1e6).toFixed(2)  + ' MH/s';
+  if (hps >= 1e3)  return (hps / 1e3).toFixed(2)  + ' KH/s';
+  return hps.toFixed(0) + ' H/s';
+}
+
+const chartSvg         = document.getElementById('pool-chart-svg');
+const chartMessage     = document.getElementById('pool-chart-message');
+const chartTooltip     = document.getElementById('pool-chart-tooltip');
+const chartWrap        = document.getElementById('pool-chart-wrap');
+const chartWindowEl    = document.getElementById('chart-window');
+const chartCard        = document.querySelector('.chart-card');
+const chartFullscreenBtn = document.getElementById('chart-fullscreen-btn');
+
+const CHART_PAD = { top: 16, right: 46, bottom: 22, left: 50 };
+const CHART_MOBILE_BREAKPOINT = '(max-width: 600px)'; // matches this file's mobile @media breakpoint
+const CHART_WINDOW_MOBILE_MS  = 60 * 60_000;      // 1h on mobile
+const CHART_WINDOW_DESKTOP_MS = 3 * 60 * 60_000;  // 3h on desktop
+// Full screen shows everything the API returns — that's the full scope
+// once the pool's history has matured that far.
+
+let chartPoints = []; // [{ t: ms, hashrate: hps, workers: n }], oldest first — full, unclamped
+let chartFullscreen = false;
+
+function getChartWindowMs() {
+  // Mobile has no full screen mode (the toggle button is hidden there) —
+  // it always shows the 1h window. Desktop's full screen expands to the
+  // full fetched range.
+  if (window.matchMedia(CHART_MOBILE_BREAKPOINT).matches) return CHART_WINDOW_MOBILE_MS;
+  return chartFullscreen ? Infinity : CHART_WINDOW_DESKTOP_MS;
+}
+
+function setChartFullscreen(on) {
+  chartFullscreen = on;
+  chartCard.classList.toggle('fullscreen', on);
+  document.body.classList.toggle('chart-fullscreen-lock', on);
+  chartFullscreenBtn.classList.toggle('active', on);
+  chartFullscreenBtn.setAttribute('aria-label', on ? 'Exit full screen' : 'Full screen');
+  if (chartPoints.length >= 2) renderPoolChart();
+}
+
+chartFullscreenBtn.addEventListener('click', () => setChartFullscreen(!chartFullscreen));
+window.addEventListener('keydown', e => {
+  if (e.key === 'Escape' && chartFullscreen) setChartFullscreen(false);
+});
+exitChartFullscreen = () => {
+  if (chartFullscreen) setChartFullscreen(false);
+};
+
+function svgEl(tag, attrs) {
+  const el = document.createElementNS('http://www.w3.org/2000/svg', tag);
+  for (const k in attrs) el.setAttribute(k, attrs[k]);
+  return el;
+}
+
+// Quadratic-through-midpoints spline: each real point becomes a curve
+// control point, and the curve passes through the midpoint between each
+// consecutive pair. Stays close to the real data (unlike Catmull-Rom, it
+// never overshoots on sharp jumps) while rounding off the pointy vertices
+// a plain polyline would have at every sample.
+function smoothPath(pts) {
+  if (pts.length < 3) {
+    return 'M' + pts.map(([x, y]) => `${x},${y}`).join(' L ');
+  }
+  let d = `M ${pts[0][0]},${pts[0][1]}`;
+  for (let i = 1; i < pts.length - 1; i++) {
+    const [cx, cy] = pts[i];
+    const [nx, ny] = pts[i + 1];
+    const mx = (cx + nx) / 2;
+    const my = (cy + ny) / 2;
+    d += ` Q ${cx},${cy} ${mx},${my}`;
+  }
+  const [lx, ly] = pts[pts.length - 1];
+  d += ` L ${lx},${ly}`;
+  return d;
+}
+
+function formatSpan(ms) {
+  const totalMin = Math.max(1, Math.round(ms / 60_000));
+  if (totalMin < 60) return `${totalMin}m`;
+  const h = Math.floor(totalMin / 60);
+  const m = totalMin % 60;
+  return m ? `${h}h ${m}m` : `${h}h`;
+}
+
+async function loadPoolChart() {
+  try {
+    const resp = await fetch(CHART_URL, { cache: 'no-cache' });
+    if (!resp.ok) throw new Error(`HTTP ${resp.status}`);
+    const data = await resp.json();
+
+    chartPoints = (data.points ?? [])
+      .map(p => ({
+        t: Date.parse(p.capturedAt),
+        hashrate: p.hashrate1mHashesPerSec ?? hashrateToHps(p.hashrate1mRaw),
+        workers: p.workers ?? 0,
+      }))
+      .filter(p => !isNaN(p.t))
+      .sort((a, b) => a.t - b.t);
+
+    renderPoolChart();
+  } catch (e) {
+    console.warn('Pool chart unavailable:', e.message);
+    if (!chartPoints.length) {
+      chartSvg.classList.add('hidden');
+      chartMessage.classList.remove('hidden');
+      chartMessage.textContent = 'Chart unavailable right now.';
+    }
+  }
+}
+
+function renderPoolChart() {
+  // Mobile/desktop show a recent slice; full screen shows everything fetched.
+  const windowMs = getChartWindowMs();
+  const fullTMax = chartPoints.length ? chartPoints[chartPoints.length - 1].t : 0;
+  const cutoff = fullTMax - windowMs;
+  const points = chartPoints.filter(p => p.t >= cutoff);
+
+  if (points.length < 2) {
+    chartSvg.classList.add('hidden');
+    chartMessage.classList.remove('hidden');
+    chartMessage.textContent = points.length
+      ? 'Gathering data — check back in a few minutes.'
+      : 'No data yet — check back in a few minutes.';
+    chartWindowEl.textContent = '';
+    return;
+  }
+
+  // If the chart is already showing, measure before touching anything else.
+  // Mobile browsers can report a transient near-zero box mid-orientation-
+  // change (address bar show/hide animation, full screen layout not yet
+  // settled, etc.); committing that size into the viewBox would squash the
+  // whole chart into a corner until another resize happens to fire. Bail
+  // out and leave the previous render in place — the resize handler's
+  // follow-up "settle" pass retries once layout has actually caught up.
+  // (This guard is skipped on the very first reveal, where the SVG
+  // legitimately measures 0×0 because it's still display:none.)
+  const wasVisible = !chartSvg.classList.contains('hidden');
+  if (wasVisible) {
+    const precheck = chartSvg.getBoundingClientRect();
+    if (precheck.width < 50 || precheck.height < 40) return;
+  }
+
+  chartMessage.classList.add('hidden');
+  chartSvg.classList.remove('hidden');
+  chartSvg.innerHTML = '';
+
+  // Match the viewBox to the SVG's actual rendered pixel size so 1 viewBox
+  // unit == 1 CSS pixel. Without this, the viewBox aspect ratio (fixed)
+  // rarely matches the rendered box's aspect ratio (which varies by screen
+  // width), and preserveAspectRatio="none" then scales x and y by different
+  // factors — stretching every shape non-uniformly, including <text> glyphs,
+  // which is what made axis labels look flattened/squished.
+  const rectNow = chartSvg.getBoundingClientRect();
+  const vbW = Math.max(Math.round(rectNow.width), 300);
+  const vbH = Math.max(Math.round(rectNow.height), 100);
+  chartSvg.setAttribute('viewBox', `0 0 ${vbW} ${vbH}`);
+
+  const { top, right, bottom, left } = CHART_PAD;
+  const plotW = vbW - left - right;
+  const plotH = vbH - top - bottom;
+
+  const tMin = points[0].t;
+  const tMax = points[points.length - 1].t;
+  const tSpan = Math.max(tMax - tMin, 1);
+  chartWindowEl.textContent = `(last ${formatSpan(tSpan)})`;
+
+  const hrMax = Math.max(...points.map(p => p.hashrate), 1) * 1.15;
+  const wMax  = Math.max(...points.map(p => p.workers), 1) * 1.3;
+
+  const xPos  = t => left + ((t - tMin) / tSpan) * plotW;
+  const yHr   = h => top + plotH - (h / hrMax) * plotH;
+  const yW    = w => top + plotH - (w / wMax) * plotH;
+
+  // Grid lines + axis labels (3 horizontal bands)
+  for (let i = 0; i <= 2; i++) {
+    const frac = i / 2;
+    const yy = top + plotH * frac;
+    chartSvg.appendChild(svgEl('line', {
+      class: 'grid-line', x1: left, x2: left + plotW, y1: yy, y2: yy,
+    }));
+    chartSvg.appendChild(svgEl('text', {
+      class: 'axis-label', x: left - 6, y: yy + 3, 'text-anchor': 'end',
+    })).textContent = chartFormatHashrate(hrMax * (1 - frac));
+    chartSvg.appendChild(svgEl('text', {
+      class: 'axis-label', x: left + plotW + 6, y: yy + 3, 'text-anchor': 'start',
+    })).textContent = Math.round(wMax * (1 - frac));
+  }
+
+  // X-axis time labels (start / mid / end)
+  [0, 0.5, 1].forEach(frac => {
+    const t = tMin + tSpan * frac;
+    chartSvg.appendChild(svgEl('text', {
+      class: 'axis-label', x: xPos(t), y: vbH - 6,
+      'text-anchor': frac === 0 ? 'start' : frac === 1 ? 'end' : 'middle',
+    })).textContent = new Date(t).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', hourCycle: 'h23' });
+  });
+
+  // Hashrate area + line
+  const hrPts = points.map(p => [xPos(p.t), yHr(p.hashrate)]);
+  const hrLineD = smoothPath(hrPts);
+  const areaD = `${hrLineD} L ${left + plotW},${top + plotH} L ${left},${top + plotH} Z`;
+  chartSvg.appendChild(svgEl('path', { class: 'hashrate-area', d: areaD }));
+  chartSvg.appendChild(svgEl('path', { class: 'hashrate-line', d: hrLineD }));
+
+  // Workers line
+  const wPts = points.map(p => [xPos(p.t), yW(p.workers)]);
+  chartSvg.appendChild(svgEl('path', { class: 'workers-line', d: smoothPath(wPts) }));
+
+  // Interactive crosshair + tooltip
+  const crosshair = svgEl('line', { class: 'crosshair', x1: 0, x2: 0, y1: top, y2: top + plotH, opacity: 0 });
+  const dotHr = svgEl('circle', { class: 'dot-hashrate', r: 3.5, opacity: 0 });
+  const dotW  = svgEl('circle', { class: 'dot-workers', r: 3, opacity: 0 });
+  chartSvg.appendChild(crosshair);
+  chartSvg.appendChild(dotHr);
+  chartSvg.appendChild(dotW);
+
+  const overlay = svgEl('rect', { x: left, y: top, width: plotW, height: plotH, fill: 'transparent' });
+  chartSvg.appendChild(overlay);
+
+  function showPoint(clientX) {
+    const rect = chartSvg.getBoundingClientRect();
+    const svgX = (clientX - rect.left) * (vbW / rect.width);
+    const frac = Math.min(Math.max((svgX - left) / plotW, 0), 1);
+    const targetT = tMin + tSpan * frac;
+
+    let nearest = points[0];
+    let bestDiff = Infinity;
+    for (const p of points) {
+      const diff = Math.abs(p.t - targetT);
+      if (diff < bestDiff) { bestDiff = diff; nearest = p; }
+    }
+
+    const px = xPos(nearest.t);
+    crosshair.setAttribute('x1', px);
+    crosshair.setAttribute('x2', px);
+    crosshair.setAttribute('opacity', 1);
+    dotHr.setAttribute('cx', px);
+    dotHr.setAttribute('cy', yHr(nearest.hashrate));
+    dotHr.setAttribute('opacity', 1);
+    dotW.setAttribute('cx', px);
+    dotW.setAttribute('cy', yW(nearest.workers));
+    dotW.setAttribute('opacity', 1);
+
+    const wrapRect = chartWrap.getBoundingClientRect();
+    const tooltipX = (rect.left - wrapRect.left) + (px / vbW) * rect.width;
+    const tooltipY = (rect.top - wrapRect.top) + (yHr(nearest.hashrate) / vbH) * rect.height;
+
+    chartTooltip.style.left = tooltipX + 'px';
+    chartTooltip.style.top  = Math.max(tooltipY - 12, 0) + 'px';
+    chartTooltip.innerHTML = `
+      <div class="tooltip-time">${new Date(nearest.t).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', hourCycle: 'h23' })}</div>
+      <div class="tooltip-hashrate">⬤ ${chartFormatHashrate(nearest.hashrate)}</div>
+      <div class="tooltip-workers">⬤ ${nearest.workers} worker${nearest.workers === 1 ? '' : 's'}</div>
+    `;
+    chartTooltip.classList.remove('hidden');
+  }
+
+  function hidePoint() {
+    crosshair.setAttribute('opacity', 0);
+    dotHr.setAttribute('opacity', 0);
+    dotW.setAttribute('opacity', 0);
+    chartTooltip.classList.add('hidden');
+  }
+
+  overlay.addEventListener('mousemove', e => showPoint(e.clientX));
+  overlay.addEventListener('mouseleave', hidePoint);
+  overlay.addEventListener('touchstart', e => { const t = e.touches[0]; if (t) showPoint(t.clientX); }, { passive: true });
+  overlay.addEventListener('touchmove',  e => { const t = e.touches[0]; if (t) showPoint(t.clientX); }, { passive: true });
+  overlay.addEventListener('touchend', hidePoint);
+}
+
+// Re-measure on resize (debounced) so the viewBox keeps matching the
+// rendered size, and the mobile/desktop clamp (getChartWindowMs) keeps
+// matching the current width — e.g. on orientation change or window
+// resize. A second "settle" pass follows the first: on phones, rotating
+// can take longer than one debounce interval to finish (address bar
+// show/hide animation, etc.), so this catches whatever changed after our
+// first re-measure. renderPoolChart() itself also refuses to commit a
+// measurement that still looks mid-transition, rather than rendering a
+// squashed chart from a bad size.
+let chartResizeTimer = null;
+let chartResizeSettleTimer = null;
+// Mobile has no full screen mode (its toggle button is hidden there), so
+// if a resize/rotation shrinks the window down to mobile width while full
+// screen is still active from a wider layout, there'd be no button left to
+// close it with. Auto-exit in that case.
+function exitFullscreenIfMobile() {
+  if (chartFullscreen && window.matchMedia(CHART_MOBILE_BREAKPOINT).matches) setChartFullscreen(false);
+}
+
+function scheduleChartResize() {
+  clearTimeout(chartResizeTimer);
+  clearTimeout(chartResizeSettleTimer);
+  chartResizeTimer = setTimeout(() => {
+    exitFullscreenIfMobile();
+    if (chartPoints.length >= 2) renderPoolChart();
+    chartResizeSettleTimer = setTimeout(() => {
+      exitFullscreenIfMobile();
+      if (chartPoints.length >= 2) renderPoolChart();
+    }, 350);
+  }, 150);
+}
+window.addEventListener('resize', scheduleChartResize);
+window.addEventListener('orientationchange', scheduleChartResize);
+
+// The chart card is display:none while another section tab is active, so a
+// periodic refresh landing during that window would measure a 0×0 box.
+// Re-measure whenever the user navigates back to Home.
+refreshPoolChartOnShow = () => {
+  if (chartPoints.length >= 2) renderPoolChart();
+};
 
 // ── Odds vs. reward chart helpers ───────────────────────────
 function oddsPayoutWidth(btc) {
@@ -2015,6 +2423,7 @@ function switchSection(id) {
   document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
   const sec = document.getElementById(id);
   if (sec) sec.classList.add('active');
+  if (id === 'home') refreshPoolChartOnShow(); else exitChartFullscreen();
   window.scrollTo({ top: 0, behavior: 'smooth' });
   const addrVal = document.getElementById('addr-input')?.value.trim();
   if (id === 'mystats' && addrVal) {
@@ -2156,6 +2565,9 @@ document.querySelectorAll('[data-disclaimer]').forEach(el => { el.outerHTML = DI
 
 initLeaderboard();
 fetchPoolStatus();
+loadPoolChart();
+// Refresh every minute — the source data updates on the same cadence
+setInterval(loadPoolChart, 60_000);
 </script>
 
 <script type="text/javascript">
