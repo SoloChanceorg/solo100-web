@@ -339,13 +339,6 @@
     /* ── POOL CHART ── */
     .chart-card { margin-bottom: 2rem; }
     .chart-card:hover { transform: none; box-shadow: none; background: var(--bg-card); }
-    .chart-card.fullscreen {
-      position: fixed; inset: 0; z-index: 500; margin: 0; border-radius: 0;
-      display: flex; flex-direction: column; background: var(--bg);
-      backdrop-filter: none; -webkit-backdrop-filter: none;
-    }
-    .chart-card.fullscreen .chart-wrap { flex: 1 1 auto; height: auto; }
-    body.chart-fullscreen-lock { overflow: hidden; }
     .chart-header {
       display: flex; align-items: baseline; justify-content: space-between;
       flex-wrap: wrap; gap: .5rem; margin-bottom: .75rem;
@@ -353,18 +346,6 @@
     .chart-title { font-size: .95rem; font-weight: 500; color: var(--text); }
     .chart-window { font-size: .78rem; font-weight: 400; color: var(--muted); }
     .chart-legend { display: flex; align-items: center; gap: 1rem; font-size: .78rem; color: var(--muted); }
-    .chart-fullscreen-btn {
-      display: inline-flex; align-items: center; justify-content: center;
-      width: 1.75rem; height: 1.75rem; padding: 0;
-      background: transparent; border: 1px solid var(--border); border-radius: var(--radius-sm);
-      color: var(--muted); cursor: pointer; transition: color .2s, border-color .2s, background .2s;
-    }
-    .chart-fullscreen-btn:hover, .chart-fullscreen-btn.active {
-      color: var(--accent); border-color: var(--accent); background: var(--accent-dim);
-    }
-    .chart-fullscreen-btn .icon-compress { display: none; }
-    .chart-fullscreen-btn.active .icon-expand { display: none; }
-    .chart-fullscreen-btn.active .icon-compress { display: block; }
     .legend-item { display: inline-flex; align-items: center; gap: .35rem; }
     .legend-swatch { width: .6rem; height: .6rem; border-radius: 2px; display: inline-block; }
     .legend-hashrate { background: var(--accent); }
@@ -817,7 +798,6 @@
       .footer-inner { flex-direction: column; align-items: center; }
 
       .chart-wrap { height: 170px; }
-      .chart-fullscreen-btn { display: none; }
 
       .odds-headers, .odds-row { grid-template-columns: 1fr 108px 1fr; gap: .35rem; }
       .odds-value { font-size: .64rem; }
@@ -925,14 +905,6 @@
         <div class="chart-legend">
           <span class="legend-item"><span class="legend-swatch legend-hashrate"></span>Hashrate</span>
           <span class="legend-item"><span class="legend-swatch legend-workers"></span>Workers</span>
-          <button id="chart-fullscreen-btn" class="chart-fullscreen-btn" type="button" aria-label="Full screen">
-            <svg class="icon-expand" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="15" height="15">
-              <path d="M9 3H5a2 2 0 0 0-2 2v4M15 3h4a2 2 0 0 1 2 2v4M9 21H5a2 2 0 0 1-2-2v-4M15 21h4a2 2 0 0 0 2-2v-4" />
-            </svg>
-            <svg class="icon-compress" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="15" height="15">
-              <path d="M4 9h4a2 2 0 0 0 2-2V3M20 9h-4a2 2 0 0 1-2-2V3M4 15h4a2 2 0 0 1 2 2v4M20 15h-4a2 2 0 0 0-2 2v4" />
-            </svg>
-          </button>
         </div>
       </div>
       <div id="pool-chart-wrap" class="chart-wrap">
@@ -1758,7 +1730,6 @@
 
 <script>
 let refreshPoolChartOnShow = () => {};
-let exitChartFullscreen = () => {};
 
 // ── Helpers ────────────────────────────────────────────────
 function fmtDiff(d) {
@@ -1902,43 +1873,17 @@ const chartMessage     = document.getElementById('pool-chart-message');
 const chartTooltip     = document.getElementById('pool-chart-tooltip');
 const chartWrap        = document.getElementById('pool-chart-wrap');
 const chartWindowEl    = document.getElementById('chart-window');
-const chartCard        = document.querySelector('.chart-card');
-const chartFullscreenBtn = document.getElementById('chart-fullscreen-btn');
 
 const CHART_PAD = { top: 16, right: 46, bottom: 22, left: 50 };
 const CHART_MOBILE_BREAKPOINT = '(max-width: 600px)'; // matches this file's mobile @media breakpoint
 const CHART_WINDOW_MOBILE_MS  = 60 * 60_000;      // 1h on mobile
 const CHART_WINDOW_DESKTOP_MS = 3 * 60 * 60_000;  // 3h on desktop
-// Full screen shows everything the API returns — that's the full scope
-// once the pool's history has matured that far.
 
 let chartPoints = []; // [{ t: ms, hashrate: hps, workers: n }], oldest first — full, unclamped
-let chartFullscreen = false;
 
 function getChartWindowMs() {
-  // Mobile has no full screen mode (the toggle button is hidden there) —
-  // it always shows the 1h window. Desktop's full screen expands to the
-  // full fetched range.
-  if (window.matchMedia(CHART_MOBILE_BREAKPOINT).matches) return CHART_WINDOW_MOBILE_MS;
-  return chartFullscreen ? Infinity : CHART_WINDOW_DESKTOP_MS;
+  return window.matchMedia(CHART_MOBILE_BREAKPOINT).matches ? CHART_WINDOW_MOBILE_MS : CHART_WINDOW_DESKTOP_MS;
 }
-
-function setChartFullscreen(on) {
-  chartFullscreen = on;
-  chartCard.classList.toggle('fullscreen', on);
-  document.body.classList.toggle('chart-fullscreen-lock', on);
-  chartFullscreenBtn.classList.toggle('active', on);
-  chartFullscreenBtn.setAttribute('aria-label', on ? 'Exit full screen' : 'Full screen');
-  if (chartPoints.length >= 2) renderPoolChart();
-}
-
-chartFullscreenBtn.addEventListener('click', () => setChartFullscreen(!chartFullscreen));
-window.addEventListener('keydown', e => {
-  if (e.key === 'Escape' && chartFullscreen) setChartFullscreen(false);
-});
-exitChartFullscreen = () => {
-  if (chartFullscreen) setChartFullscreen(false);
-};
 
 function svgEl(tag, attrs) {
   const el = document.createElementNS('http://www.w3.org/2000/svg', tag);
@@ -2003,7 +1948,6 @@ async function loadPoolChart() {
 }
 
 function renderPoolChart() {
-  // Mobile/desktop show a recent slice; full screen shows everything fetched.
   const windowMs = getChartWindowMs();
   const fullTMax = chartPoints.length ? chartPoints[chartPoints.length - 1].t : 0;
   const cutoff = fullTMax - windowMs;
@@ -2174,22 +2118,13 @@ function renderPoolChart() {
 // squashed chart from a bad size.
 let chartResizeTimer = null;
 let chartResizeSettleTimer = null;
-// Mobile has no full screen mode (its toggle button is hidden there), so
-// if a resize/rotation shrinks the window down to mobile width while full
-// screen is still active from a wider layout, there'd be no button left to
-// close it with. Auto-exit in that case.
-function exitFullscreenIfMobile() {
-  if (chartFullscreen && window.matchMedia(CHART_MOBILE_BREAKPOINT).matches) setChartFullscreen(false);
-}
 
 function scheduleChartResize() {
   clearTimeout(chartResizeTimer);
   clearTimeout(chartResizeSettleTimer);
   chartResizeTimer = setTimeout(() => {
-    exitFullscreenIfMobile();
     if (chartPoints.length >= 2) renderPoolChart();
     chartResizeSettleTimer = setTimeout(() => {
-      exitFullscreenIfMobile();
       if (chartPoints.length >= 2) renderPoolChart();
     }, 350);
   }, 150);
@@ -2546,7 +2481,7 @@ function switchSection(id) {
   document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
   const sec = document.getElementById(id);
   if (sec) sec.classList.add('active');
-  if (id === 'home') refreshPoolChartOnShow(); else exitChartFullscreen();
+  if (id === 'home') refreshPoolChartOnShow();
   window.scrollTo({ top: 0, behavior: 'smooth' });
   const addrVal = document.getElementById('addr-input')?.value.trim();
   if (id === 'mystats' && addrVal) {
