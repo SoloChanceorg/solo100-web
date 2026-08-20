@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sponsor — solo100.org BTC Mining Pool</title>
+  <meta name="description" content="Sponsor solo100.org — put your brand on the homepage banner or a text link in the supporter list." />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://solo100.org/sponsor.html" />
+
+  <!-- Open Graph -->
+  <meta property="og:type"        content="website" />
+  <meta property="og:url"         content="https://solo100.org/sponsor.html" />
+  <meta property="og:title"       content="Sponsor — solo100.org BTC Mining Pool" />
+  <meta property="og:description" content="Sponsor solo100.org — put your brand on the homepage banner or a text link in the supporter list." />
+  <meta property="og:image"       content="https://solo100.org/images/og-image.png" />
+  <meta property="og:image:width"  content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt"    content="solo100.org — Top 100 quality shares. Equal Bitcoin payout." />
+  <meta property="og:site_name"   content="solo100.org" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card"        content="summary_large_image" />
+  <meta name="twitter:title"       content="Sponsor — solo100.org BTC Mining Pool" />
+  <meta name="twitter:description" content="Sponsor solo100.org — put your brand on the homepage banner or a text link in the supporter list." />
+  <meta name="twitter:image"       content="https://solo100.org/images/og-image.png" />
+
+  <!-- Favicons -->
+  <link rel="icon" type="image/png" href="images/logo-no-text-transparent.png" />
+  <link rel="apple-touch-icon"     href="images/logo-no-text-transparent.png" />
+  <meta name="theme-color" content="#F7931A" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@300;400;500;700&family=Ubuntu+Mono&display=swap" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@300;400;500;700&family=Ubuntu+Mono&display=swap" rel="stylesheet" />
+
+  <style>
+    :root {
+      --bg:           #0d1117;
+      --bg-card:      rgba(255,255,255,.04);
+      --bg-card-hover:rgba(255,255,255,.07);
+      --border:       rgba(255,255,255,.08);
+      --accent:       #F7931A;
+      --accent-dim:   rgba(247,147,26,.15);
+      --accent-glow:  rgba(247,147,26,.25);
+      --text:         #e6edf3;
+      --muted:        #7d8590;
+      --green:        #3fb950;
+      --green-dim:    rgba(63,185,80,.15);
+      --radius:       12px;
+      --radius-sm:    8px;
+      --blur:         blur(12px);
+      --font:         'Ubuntu', sans-serif;
+      --mono:         'Ubuntu Mono', 'Fira Mono', 'Courier New', monospace;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      background: var(--bg); color: var(--text); font-family: var(--font);
+      font-weight: 300; font-size: 16px; line-height: 1.6;
+      min-height: 100vh; display: flex; flex-direction: column;
+    }
+    a { color: var(--accent); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    strong { font-weight: 500; }
+
+    /* ── HEADER ── */
+    .header {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(13,17,23,.85);
+      backdrop-filter: var(--blur); -webkit-backdrop-filter: var(--blur);
+      border-bottom: 1px solid var(--border);
+    }
+    .header-inner {
+      max-width: 960px; margin: 0 auto; padding: .5rem 1.25rem;
+      display: flex; align-items: center; justify-content: space-between;
+      flex-wrap: wrap; min-height: 60px; gap: .5rem 1rem;
+    }
+    .logo {
+      display: flex; align-items: center; gap: .5rem;
+      font-size: 1.1rem; font-weight: 500; white-space: nowrap; user-select: none;
+      text-decoration: none; color: var(--text);
+    }
+    .logo:hover { text-decoration: none; }
+    .logo-icon { height: 32px; width: 32px; object-fit: contain; }
+    .accent { color: var(--accent); }
+    .s100       { color: var(--text) !important; font-style: normal; }
+    .s100 .accent { color: var(--accent); }
+    .nav { display: flex; gap: .25rem; flex-wrap: wrap; }
+    .nav-btn {
+      background: transparent; border: none;
+      color: var(--muted); font-family: var(--font);
+      font-size: .9rem; font-weight: 400;
+      padding: .4rem .85rem; border-radius: var(--radius-sm);
+      cursor: pointer; text-decoration: none; display: inline-block;
+      transition: color .2s, background .2s;
+    }
+    .nav-btn:hover { color: var(--text); background: var(--bg-card); text-decoration: none; }
+    .nav-btn.active { color: var(--accent); background: var(--accent-dim); }
+
+    /* ── CONTAINER ── */
+    .container { max-width: 960px; margin: 0 auto; padding: 0 1.25rem; width: 100%; }
+    main.container { flex: 1; padding-top: 2rem; padding-bottom: 4rem; }
+
+    /* ── HERO ── */
+    .hero { margin-bottom: 1.5rem; padding-top: .5rem; }
+    .hero h1 { font-size: clamp(1.6rem, 4vw, 2.4rem); font-weight: 700; line-height: 1.2; margin-bottom: .65rem; }
+    .hero-sub { color: var(--muted); font-size: 1.05rem; max-width: 640px; }
+    .hero-sub + .hero-sub { margin-top: .5rem; }
+
+    /* ── CARDS ── */
+    .card {
+      background: var(--bg-card); border: 1px solid var(--border);
+      border-radius: var(--radius); padding: 1.25rem 1.5rem;
+      backdrop-filter: var(--blur); -webkit-backdrop-filter: var(--blur);
+      transition: transform .2s ease, box-shadow .2s ease, background .2s ease;
+    }
+    .card:hover { transform: translateY(-3px); box-shadow: 0 8px 32px var(--accent-glow); background: var(--bg-card-hover); }
+
+    /* ── SPONSOR TIERS ── */
+    .sponsor-tier-grid { display: grid; grid-template-columns: 1fr; gap: 1.25rem; margin: 2rem 0; }
+    .sponsor-tier { position: relative; overflow: hidden; display: flex; flex-direction: column; align-items: flex-start; }
+    .sponsor-tier-featured {
+      background: linear-gradient(135deg, rgba(63,185,80,.08), rgba(63,185,80,.02));
+      border-color: rgba(63,185,80,.3);
+    }
+    .sponsor-tier-featured:hover {
+      background: linear-gradient(135deg, rgba(63,185,80,.12), rgba(63,185,80,.03));
+      box-shadow: 0 8px 32px rgba(63,185,80,.25);
+    }
+    .sponsor-tier-price { font-size: 1.7rem; font-weight: 700; color: var(--text); }
+    .sponsor-tier-price span { font-size: .82rem; font-weight: 400; color: var(--muted); }
+    .sponsor-tier-name { font-size: 1.05rem; font-weight: 500; margin: .3rem 0 .6rem; }
+    .sponsor-tier-logo { height: 56px; width: auto; margin: .3rem 0 .8rem; }
+    .sponsor-tier-desc { color: var(--muted); font-size: .88rem; line-height: 1.65; margin-bottom: 1rem; }
+    .slot-available { color: var(--green); font-size: .82rem; font-weight: 500; }
+
+    .sponsor-ribbon {
+      position: absolute; top: 13px; right: -34px; width: 130px; text-align: center;
+      background: var(--green); color: #07240f; font-size: .62rem; font-weight: 700;
+      text-transform: uppercase; letter-spacing: .08em; padding: .28rem 0 .28rem 8px;
+      transform: rotate(45deg); box-shadow: 0 2px 6px rgba(0,0,0,.3);
+    }
+
+    .sponsor-cta {
+      display: inline-block; margin-top: auto;
+      background: var(--green); color: #07240f; text-decoration: none;
+      font-size: .9rem; font-weight: 500; padding: .65rem 1.4rem;
+      border-radius: var(--radius-sm); transition: opacity .2s, transform .15s;
+    }
+    .sponsor-cta-alt { background: var(--green-dim); color: var(--green); }
+    .sponsor-cta:hover { opacity: .88; transform: translateY(-1px); text-decoration: none; }
+
+    .supporter-list { list-style: none; display: grid; grid-template-columns: 1fr; gap: .4rem; margin-bottom: 1.2rem; width: 100%; }
+    .supporter-slot {
+      display: flex; align-items: center; gap: .4rem; font-size: .82rem;
+      padding: .4rem .6rem; border: 1px dashed var(--border); border-radius: var(--radius-sm);
+    }
+    .supporter-slot-num { color: var(--muted); }
+
+    .tier-table { width: 100%; border-collapse: collapse; font-size: .85rem; }
+    .tier-table th {
+      text-align: left; color: var(--muted); font-weight: 500;
+      text-transform: uppercase; letter-spacing: .05em; font-size: .75rem;
+      padding: .5rem .75rem; border-bottom: 1px solid var(--border); white-space: nowrap;
+    }
+    .tier-table td { padding: .6rem .75rem; border-bottom: 1px solid var(--border); color: var(--text); vertical-align: top; }
+    .tier-table tr:last-child td { border-bottom: none; }
+    .tier-table td:nth-child(1) { color: var(--accent); font-weight: 500; white-space: nowrap; }
+    .tier-table td:nth-child(2), .tier-table td:nth-child(3) { color: var(--muted); white-space: nowrap; }
+    .tier-table td:nth-child(4) { color: var(--muted); min-width: 200px; }
+    .tier-table td:nth-child(5) { color: var(--muted); white-space: nowrap; }
+
+    .donation-field {
+      display: flex; align-items: center; gap: .6rem;
+      background: var(--bg); border: 1px solid var(--border);
+      border-radius: var(--radius-sm); padding: .6rem .8rem; width: 100%;
+    }
+    .donation-address { flex: 1; min-width: 0; font-family: var(--mono); font-size: .82rem; color: var(--text); overflow-wrap: anywhere; }
+    .donation-copy-btn {
+      flex-shrink: 0; background: var(--accent-dim); color: var(--accent); border: none;
+      font-family: var(--font); font-size: .8rem; font-weight: 500;
+      padding: .4rem .9rem; border-radius: var(--radius-sm); cursor: pointer; transition: background .2s;
+    }
+    .donation-copy-btn:hover { background: var(--accent-glow); }
+
+    .legal-body p { color: var(--muted); font-size: .9rem; line-height: 1.75; }
+    .legal-body p + p { margin-top: .6rem; }
+
+    /* ── FOOTER ── */
+    .footer { border-top: 1px solid var(--border); padding: 1.1rem 0; font-size: .85rem; color: var(--muted); }
+    .footer-inner { display: flex; align-items: center; justify-content: center; gap: 2rem; flex-wrap: wrap; }
+    .footer a { color: var(--muted); }
+    .footer a:hover { color: var(--accent); text-decoration: none; }
+    .footer-tg-link, .footer-email-link { display: inline-flex; align-items: center; gap: .4rem; }
+    .footer-networks { display: flex; flex-direction: column; align-items: center; gap: .35rem; margin-top: .85rem; text-align: center; }
+    .footer-bottom { margin-top: .85rem; font-size: .8rem; text-align: center; }
+    .footer-bottom-sub { margin-top: .3rem; }
+
+    @media (max-width: 600px) {
+      .header-inner { padding: .6rem 1.25rem; }
+      .footer-inner { flex-direction: column; align-items: center; }
+      .sponsor-tier-logo { height: 44px; }
+    }
+  </style>
+</head>
+<body>
+
+<header class="header">
+  <div class="header-inner">
+    <a href="/" class="logo">
+      <img src="images/logo-no-text-transparent.png" alt="solo100.org logo" class="logo-icon" />
+      <span class="s100">solo<span class="accent">100</span>.org</span>
+    </a>
+    <nav class="nav">
+      <a href="/" class="nav-btn">Home</a>
+      <a href="/#whatis" class="nav-btn">What is solo100.org?</a>
+      <a href="/#connect" class="nav-btn">Connect</a>
+      <a href="/#mystats" class="nav-btn">My Stats</a>
+      <a href="/#best100" class="nav-btn">Best 100</a>
+      <a href="/#blocks" class="nav-btn">Blocks</a>
+      <a href="/#strategy" class="nav-btn">Strategy</a>
+      <a href="/#disclaimer" class="nav-btn">Disclaimer</a>
+      <a href="/#faq" class="nav-btn">FAQ</a>
+      <a href="/sponsor.html" class="nav-btn active">Sponsor</a>
+    </nav>
+  </div>
+</header>
+
+<main class="container">
+
+  <div class="hero">
+    <h1>Sponsor <span class="s100">solo<span class="accent">100</span>.org</span></h1>
+    <p class="hero-sub">Put your brand in front of the miners at solo100.org — the first payment scheme of its kind, built for home hobby miners running Bitaxes and small rigs.</p>
+    <p class="hero-sub">Sponsoring means backing something genuinely new: a game-changing way for small miners to win a meaningful reward, instead of a dust trickle or a once-in-a-lifetime chance.</p>
+  </div>
+
+  <div class="sponsor-tier-grid">
+
+    <div class="card sponsor-tier sponsor-tier-featured">
+      <span class="sponsor-ribbon">1 slot</span>
+      <div class="sponsor-tier-price">0.01 BTC <span>/ year</span></div>
+      <h2 class="sponsor-tier-name">Sponsor</h2>
+      <p class="sponsor-tier-desc">The single highest-visibility spot: a banner on the homepage plus the top placement on this page — your logo, your text, and your link. Only one Sponsor slot exists at a time, so it's exclusively your brand, never shared.</p>
+      <span class="slot-available" style="margin-bottom:1rem">Currently available</span>
+      <a href="mailto:bitcoin@solo100.org?subject=Sponsor%20slot%20(0.01%20BTC%2Fyear)" class="sponsor-cta">Become the Sponsor →</a>
+    </div>
+
+    <div class="card sponsor-tier">
+      <div class="sponsor-tier-price">0.001 BTC <span>/ year</span></div>
+      <h2 class="sponsor-tier-name">Supporters</h2>
+      <ol class="supporter-list">
+        <li class="supporter-slot"><span class="supporter-slot-num">1.</span> <span class="slot-available">Available</span></li>
+        <li class="supporter-slot"><span class="supporter-slot-num">2.</span> <span class="slot-available">Available</span></li>
+        <li class="supporter-slot"><span class="supporter-slot-num">3.</span> <span class="slot-available">Available</span></li>
+        <li class="supporter-slot"><span class="supporter-slot-num">4.</span> <span class="slot-available">Available</span></li>
+        <li class="supporter-slot"><span class="supporter-slot-num">5.</span> <span class="slot-available">Available</span></li>
+        <li class="supporter-slot"><span class="supporter-slot-num">6.</span> <span class="slot-available">Available</span></li>
+        <li class="supporter-slot"><span class="supporter-slot-num">7.</span> <span class="slot-available">Available</span></li>
+        <li class="supporter-slot"><span class="supporter-slot-num">8.</span> <span class="slot-available">Available</span></li>
+        <li class="supporter-slot"><span class="supporter-slot-num">9.</span> <span class="slot-available">Available</span></li>
+        <li class="supporter-slot"><span class="supporter-slot-num">10.</span> <span class="slot-available">Available</span></li>
+      </ol>
+      <a href="mailto:bitcoin@solo100.org?subject=Supporter%20slot%20(0.001%20BTC%2Fyear)" class="sponsor-cta sponsor-cta-alt">Claim a supporter slot →</a>
+    </div>
+
+    <div class="card sponsor-tier">
+      <h2 class="sponsor-tier-name">Want to support anonymously?</h2>
+      <p class="sponsor-tier-desc">We are always open to donations — you can donate BTC directly to the following address:</p>
+      <div class="donation-field">
+        <code class="donation-address" id="donation-address">bc1qwsr5r8pdycuqtzwmzxgw76knj6lmgczwwr5mfp</code>
+        <button type="button" class="donation-copy-btn" id="donation-copy-btn">Copy</button>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="card legal-body" style="margin-bottom:2rem">
+    <h2 style="font-size:1rem;font-weight:500;color:var(--text);text-transform:uppercase;letter-spacing:.06em;margin-bottom:.5rem">How it works</h2>
+    <div style="overflow-x:auto;margin-bottom:1rem">
+      <table class="tier-table">
+        <thead>
+          <tr><th>Tier</th><th>Slots</th><th>Price</th><th>What you get</th><th>Availability</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Sponsor</td><td>1</td><td>0.01 BTC / year</td><td>Homepage sponsor banner, plus the highest-visibility spot on this page</td><td>Currently available</td></tr>
+          <tr><td>Supporter</td><td>10</td><td>0.001 BTC / year</td><td>Listed in the supporter list on this page</td><td>Currently available</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p>Reach out via email with the text you'd like shown and the link it should point to. You can sponsor or support under your own name, your product's or company's name, or any of your social media accounts. Payment is in BTC, sent to an address we'll provide. Once payment confirms, your slot goes live and stays up for the paid period. Your sponsorship or support is shown on both the mainnet (solo100.org) and testnet (test.solo100.org) instances of the pool.</p>
+    <p>Not sure what this looks like in practice? Our sister pool, <a href="https://bch.ee" target="_blank" rel="noopener">bch.ee</a>, already has a live Sponsor and Supporters — visit it yourself to see exactly how your brand would be shown.</p>
+    <p>Contact us via email: <a href="mailto:bitcoin@solo100.org">bitcoin@solo100.org</a>.</p>
+    <p><a href="/sponsor-terms.html">Terms apply</a>.</p>
+  </div>
+
+</main>
+
+<footer class="footer">
+  <div class="container footer-inner">
+    <a href="https://t.me/solochanceorg" target="_blank" rel="noopener" class="footer-tg-link">
+      <svg viewBox="0 0 24 24" fill="currentColor" width="14" height="14"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.562 8.248-1.97 9.289c-.145.658-.537.818-1.084.508l-3-2.21-1.447 1.394c-.16.16-.295.295-.605.295l.213-3.053 5.56-5.023c.242-.213-.054-.333-.373-.12L7.17 14.498l-2.95-.924c-.64-.204-.657-.64.136-.948l11.57-4.461c.537-.194 1.006.131.836.083z"/></svg>
+      t.me/solochanceorg
+    </a>
+    <a href="mailto:bitcoin@solo100.org" class="footer-email-link">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="14" height="14"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+      bitcoin@solo100.org
+    </a>
+    <span><a href="/sponsor.html">Sponsor</a> · <a href="/terms.html">Terms</a> · <a href="/privacy.html">Privacy</a></span>
+  </div>
+  <div class="container footer-networks">
+    <div>Mainnet: <a href="https://solo100.org">solo100.org</a> — bitcoin.solo100.org:3333</div>
+    <div>Testnet4: <a href="https://test.solo100.org">test.solo100.org</a> — testnet.solo100.org:3333</div>
+  </div>
+  <div class="container footer-bottom">
+    <div>© 2026 <span class="s100">solo<span class="accent">100</span>.org</span>. · a <a href="https://solochance.org" target="_blank" rel="noopener">SoloChance.org</a> project</div>
+    <div class="footer-bottom-sub">Built in 🇪🇪 Estonia · Hosted in 🇩🇪 Germany</div>
+  </div>
+</footer>
+
+<script>
+  var copyBtn = document.getElementById('donation-copy-btn');
+  copyBtn.addEventListener('click', function() {
+    navigator.clipboard.writeText(document.getElementById('donation-address').textContent).then(function() {
+      copyBtn.textContent = 'Copied!';
+      setTimeout(function() { copyBtn.textContent = 'Copy'; }, 1500);
+    });
+  });
+</script>
+
+</body>
+</html>
