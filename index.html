@@ -314,37 +314,6 @@
     .badge.g { border-color: rgba(63,185,80,.4); background: var(--green-dim); color: var(--green); }
     .accent { color: var(--accent); }
 
-    /* ── SPONSOR BANNER (homepage) ── */
-    .section-title-green { color: var(--green); }
-    .sponsor-banner {
-      position: relative; overflow: hidden;
-      display: flex; align-items: center; gap: 1rem;
-      font-size: .9rem; color: var(--muted);
-      text-decoration: none; cursor: pointer;
-      background: linear-gradient(135deg, rgba(63,185,80,.08), rgba(63,185,80,.02));
-      border: 1px solid rgba(63,185,80,.3);
-      border-radius: var(--radius); padding: .75rem 1.1rem; margin-bottom: 1.5rem;
-      transition: transform .2s ease, box-shadow .2s ease, background .2s ease;
-    }
-    .sponsor-banner:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 8px 32px rgba(63,185,80,.25);
-      background: linear-gradient(135deg, rgba(63,185,80,.12), rgba(63,185,80,.03));
-      text-decoration: none;
-    }
-    .sponsor-banner-content { display: flex; flex-direction: column; align-items: flex-start; gap: .4rem; flex: 1; min-width: 0; }
-    .sponsor-banner-logo { flex-shrink: 0; height: 44px; width: auto; }
-    .sponsor-banner-icon { flex-shrink: 0; font-size: 2rem; line-height: 1; }
-    .sponsor-banner-link { color: var(--green); text-decoration: none; font-weight: 600; white-space: nowrap; transition: opacity .2s; }
-    .sponsor-banner-link:hover { opacity: .75; }
-    .sponsor-ribbon {
-      position: absolute; top: 13px; right: -34px; width: 130px; text-align: center;
-      background: var(--green); color: #07240f; font-size: .62rem; font-weight: 700;
-      text-transform: uppercase; letter-spacing: .08em; padding: .28rem 0 .28rem 8px;
-      transform: rotate(45deg); box-shadow: 0 2px 6px rgba(0,0,0,.3);
-    }
-    .sponsor-banner .sponsor-ribbon { top: auto; bottom: 13px; transform: rotate(-45deg); }
-
     /* ── CARDS ── */
     .card {
       background: var(--bg-card); border: 1px solid var(--border);
@@ -828,8 +797,6 @@
 
       .footer-inner { flex-direction: column; align-items: center; }
 
-      .sponsor-banner-logo { height: 32px; }
-
       .chart-wrap { height: 170px; }
 
       .odds-headers, .odds-row { grid-template-columns: 1fr 108px 1fr; gap: .35rem; }
@@ -859,7 +826,6 @@
       <button class="nav-btn" data-section="strategy">Strategy</button>
       <button class="nav-btn" data-section="disclaimer">Disclaimer</button>
       <button class="nav-btn" data-section="faq">FAQ</button>
-      <a href="sponsor.html" class="nav-btn">Sponsor</a>
     </nav>
   </div>
 </header>
@@ -919,17 +885,6 @@
         <div class="stat-value" id="s-diff">—</div>
       </div>
     </div>
-
-    <!-- Sponsor -->
-    <h2 class="section-title section-title-green">Sponsor</h2>
-    <a href="sponsor.html" class="sponsor-banner">
-      <span class="sponsor-ribbon">Sponsor</span>
-      <span class="sponsor-banner-icon">📢</span>
-      <div class="sponsor-banner-content">
-        <span class="sponsor-banner-text">Your logo, text, and a link of your choice, shown in this exact spot — only 0.01 BTC/year. The only sponsorship banner on solo100.org.</span>
-        <span class="sponsor-banner-link">Learn more →</span>
-      </div>
-    </a>
 
     <!-- Pool Status -->
     <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:.75rem;margin-bottom:1rem;">
@@ -1765,7 +1720,7 @@
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="14" height="14"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
       bitcoin@solo100.org
     </a>
-    <span><a href="/sponsor.html">Sponsor</a> · <a href="/terms.html">Terms</a> · <a href="/privacy.html">Privacy</a></span>
+    <span><a href="/terms.html">Terms</a> · <a href="/privacy.html">Privacy</a></span>
   </div>
   <div class="container footer-networks">
     <div>Mainnet: <a href="https://solo100.org">solo100.org</a> — bitcoin.solo100.org:3333</div>
